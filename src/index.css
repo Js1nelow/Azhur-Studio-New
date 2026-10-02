@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&family=Unbounded:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, monospace;
-  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --color-brand-black: #FFFFFF;
-  --color-brand-dark: #F9FAFB;
-  --color-brand-card: #F3F4F6;
-  --color-brand-gray: #4B5563;
-  --color-brand-light: #111827;
+  --color-brand-dark: #F8FAFC;
+  --color-brand-card: #FFFFFF;
+  --color-brand-gray: #475569;
+  --color-brand-light: #0F172A;
   --color-brand-red: #E05A2B;
   --color-brand-red-hover: #C2410C;
 }
@@ -20,47 +19,42 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
-    background-color: var(--color-brand-black);
+    background-color: #FFFFFF;
   }
   body {
-    @apply bg-brand-black text-brand-light antialiased font-sans;
+    @apply bg-white text-slate-900 antialiased font-sans;
     selection-background-color: var(--color-brand-red);
     selection-color: white;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold tracking-tight text-brand-light;
+    @apply font-sans font-extrabold tracking-tight text-slate-950;
     overflow-wrap: break-word;
   }
 }
 
 @layer utilities {
   .hairline-border {
-    @apply border border-brand-light/10;
+    @apply border border-gray-200;
   }
   .hairline-t {
-    @apply border-t border-brand-light/10;
+    @apply border-t border-gray-200;
   }
   .hairline-b {
-    @apply border-b border-brand-light/10;
+    @apply border-b border-gray-200;
   }
   .hairline-l {
-    @apply border-l border-brand-light/10;
+    @apply border-l border-gray-200;
   }
   .hairline-r {
-    @apply border-r border-brand-light/10;
+    @apply border-r border-gray-200;
   }
   .hairline-x {
-    @apply border-x border-brand-light/10;
+    @apply border-x border-gray-200;
   }
   .hairline-y {
-    @apply border-y border-brand-light/10;
+    @apply border-y border-gray-200;
   }
   .text-balance {
     text-wrap: balance;
   }
-}
-
-/* Скрываем значок reCAPTCHA, как разрешено правилами Google (если добавить текст в форму) */
-.grecaptcha-badge {
-  visibility: hidden !important;
 }

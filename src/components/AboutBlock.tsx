@@ -1,80 +1,66 @@
 import { motion } from 'motion/react';
+import { Award, ShieldCheck, Users } from 'lucide-react';
 
 export function AboutBlock() {
   const stats = [
-    { value: "16+", label: "лет опыта" },
-    { value: "200+", label: "реализованных объектов" },
-    { value: "10 лет", label: "гарантия на материалы" }
+    { value: "17 лет", label: "опыта в монтаже потолков", icon: <Award className="w-5 h-5 text-brand-red" /> },
+    { value: "1000+", label: "квартир и домов в Москве и МО", icon: <Users className="w-5 h-5 text-brand-red" /> },
+    { value: "10 лет", label: "официальная гарантия по договору", icon: <ShieldCheck className="w-5 h-5 text-brand-red" /> }
   ];
 
   return (
-    <section id="about" className="relative bg-brand-black py-24 md:py-32 overflow-hidden border-t border-brand-light/5">
-      {/* Decorative ambient gradients */}
-      <div className="absolute top-1/2 left-10 w-[250px] h-[250px] rounded-full bg-brand-red/5 blur-[90px] pointer-events-none" />
-
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+    <section id="about" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* Left Column: Олег Portrait Placeholder */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start group">
+          {/* Left Column: Олег Portrait */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-start">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="relative w-full max-w-[420px] aspect-[3/4] rounded-xl overflow-hidden bg-brand-card border border-brand-light/5 relative"
+              transition={{ duration: 0.5 }}
+              className="relative w-full max-w-[420px] rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-white"
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-brand-black/20 to-transparent z-10" />
               <img
                 src="/azhur/photo/o_nas.webp"
-                alt="Олег — основатель Ажур Студии"
-                className="w-full h-full object-cover md:grayscale md:brightness-90 md:group-hover:grayscale-0 grayscale-0 brightness-100 transition-all duration-1000 ease-out"
+                alt="Олег Мисягин — основатель студии Ажур"
+                className="w-full aspect-[3/4] object-cover"
               />
               
-              {/* Floating aesthetic label overlay */}
-              <div className="absolute bottom-6 left-6 right-6 z-20">
-                <p className="font-display text-lg uppercase tracking-tight text-white leading-none">
-                  Олег
-                </p>
-                <p className="font-mono text-[10px] text-brand-red uppercase tracking-widest mt-1">
-                  Основатель Ажур Студии
-                </p>
+              <div className="p-4 bg-white border-t border-gray-200">
+                <div className="text-base font-bold text-gray-950">Олег Мисягин</div>
+                <div className="text-xs text-gray-600 mt-0.5">Основатель и ведущий мастер «Ажур Студии»</div>
               </div>
             </motion.div>
           </div>
 
           {/* Right Column: Narrative & Stats */}
-          <div className="lg:col-span-7 space-y-10">
+          <div className="lg:col-span-7 space-y-8">
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-brand-red uppercase tracking-widest">[ О НАС ]</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium leading-[1.1] text-brand-light uppercase tracking-tight">
-                Мы не просто вешаем потолки
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight leading-tight">
+                Мастерский подход к каждому метру
               </h2>
-              <p className="text-brand-gray text-base md:text-lg leading-relaxed font-sans max-w-2xl font-light">
-                Ажур Студия — это команда которая берёт на себя всё. От первого звонка до сдачи объекта. Мы работаем только с проверенными материалами и не беремся за проекты которые не можем сделать хорошо.
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                «Ажур Студия» — это не безликий агрегатор с наёмными случайными бригадами. Я лично руковожу каждым проектом, выезжаю на замер, рассчитываю смету и отвечаю своей репутацией за результат.
+              </p>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                Мы используем только безопасные сертифицированные полотна без резкого запаха и работаем с пылесосом, чтобы в вашем доме было чисто и комфортно с первого дня.
               </p>
             </div>
 
             {/* Stats row */}
-            <div className="grid grid-cols-3 gap-4 md:gap-8 pt-8 border-t border-brand-light/10">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="space-y-1.5"
-                >
-                  <div className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-brand-red leading-none">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+              {stats.map((stat, idx) => (
+                <div key={idx} className="p-4 rounded-xl bg-gray-50 border border-gray-200">
+                  <div className="mb-2">{stat.icon}</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight">
                     {stat.value}
                   </div>
-                  <div className="font-mono text-[10px] sm:text-xs text-brand-gray uppercase tracking-wider leading-snug">
+                  <div className="text-xs text-gray-600 mt-1 font-medium leading-snug">
                     {stat.label}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

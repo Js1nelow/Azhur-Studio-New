@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Phone, X, MessageSquare, ChevronRight } from 'lucide-react';
+import { Phone, ChevronRight, X, MessageCircle } from 'lucide-react';
 import { reachMetrikaGoal } from './YandexMetrika';
 
 export function FloatingContactWidget() {
@@ -8,35 +8,27 @@ export function FloatingContactWidget() {
   const [imgError, setImgError] = useState(false);
   const widgetRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click and Escape key
+  // Close when clicking outside
   useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+    function handleClickOutside(event: MouseEvent) {
       if (widgetRef.current && !widgetRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
-    };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
-      document.addEventListener('touchstart', handleOutsideClick);
-      document.addEventListener('keydown', handleEscape);
     }
-
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-      document.removeEventListener('touchstart', handleOutsideClick);
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
 
-  const handleLinkClick = (channel: string) => {
-    reachMetrikaGoal(`contact_${channel}`);
+  const handleLinkClick = (id: string) => {
+    if (id === 'telegram') reachMetrikaGoal('contact_telegram');
+    if (id === 'whatsapp') reachMetrikaGoal('contact_whatsapp');
+    if (id === 'phone') reachMetrikaGoal('contact_phone');
+    if (id === 'max') reachMetrikaGoal('contact_telegram');
+    setIsOpen(false);
   };
 
   const contactLinks = [
@@ -47,11 +39,10 @@ export function FloatingContactWidget() {
       href: 'https://t.me/+79253131799',
       target: '_blank',
       rel: 'noopener noreferrer',
-      colorClasses: 'hover:border-[#229ED9]/50 hover:bg-[#229ED9]/10 text-[#229ED9]',
-      badgeBg: 'bg-[#229ED9]/15 text-[#229ED9] border-[#229ED9]/30',
+      iconBg: 'bg-sky-50 text-sky-600 border border-sky-200',
       icon: (
         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .36z" />
         </svg>
       )
     },
@@ -59,14 +50,13 @@ export function FloatingContactWidget() {
       id: 'whatsapp',
       title: 'WhatsApp',
       subtitle: 'Написать в мессенджер',
-      href: 'https://wa.me/79253131799',
+      href: 'https://wa.me/79253131799?text=' + encodeURIComponent('Здравствуйте! Хочу узнать стоимость натяжного потолка.'),
       target: '_blank',
       rel: 'noopener noreferrer',
-      colorClasses: 'hover:border-[#25D366]/50 hover:bg-[#25D366]/10 text-[#25D366]',
-      badgeBg: 'bg-[#25D366]/15 text-[#25D366] border-[#25D366]/30',
+      iconBg: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
       icon: (
         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.66.3-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z" />
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.15C9.36 7.15 9.08 7.22 8.84 7.48C8.6 7.74 7.93 8.37 7.93 9.65C7.93 10.93 8.87 12.16 9 12.33C9.13 12.5 10.82 15.11 13.43 16.23C15.6 17.17 16.04 16.98 16.52 16.93C17 16.89 18.07 16.3 18.3 15.66C18.53 15.02 18.53 14.47 18.46 14.36C18.39 14.25 18.22 14.18 17.96 14.05C17.7 13.92 16.42 13.29 16.18 13.2C15.94 13.12 15.77 13.07 15.6 13.33C15.43 13.58 14.94 14.18 14.79 14.35C14.64 14.52 14.5 14.54 14.24 14.41C13.98 14.28 12.89 13.92 11.6 12.77C10.59 11.87 9.91 10.76 9.71 10.42C9.51 10.08 9.69 9.9 9.82 9.77C9.94 9.65 10.08 9.46 10.22 9.3C10.36 9.14 10.41 9.02 10.5 8.84C10.59 8.66 10.54 8.51 10.48 8.38C10.41 8.25 9.91 7.02 9.71 6.54C9.51 6.07 9.31 6.13 9.16 6.13H8.84C8.68 6.13 8.5 6.19 8.35 6.35C8.07 6.63 7.55 7.15 7.55 8.16" />
         </svg>
       )
     },
@@ -77,8 +67,7 @@ export function FloatingContactWidget() {
       href: 'https://max.ru/+79253131799',
       target: '_blank',
       rel: 'noopener noreferrer',
-      colorClasses: 'hover:border-purple-400/50 hover:bg-purple-500/10 text-purple-400',
-      badgeBg: 'bg-purple-500/15 text-purple-300 border-purple-500/30',
+      iconBg: 'bg-purple-50 text-purple-600 border border-purple-200',
       icon: (
         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.2-1.31c1.42.79 3.06 1.31 4.8 1.31 5.52 0 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z" />
@@ -92,8 +81,7 @@ export function FloatingContactWidget() {
       href: 'tel:+79253131799',
       target: undefined,
       rel: undefined,
-      colorClasses: 'hover:border-brand-red/50 hover:bg-brand-red/10 text-brand-red',
-      badgeBg: 'bg-brand-red/15 text-brand-red border-brand-red/30',
+      iconBg: 'bg-orange-50 text-brand-red border border-orange-200',
       icon: <Phone size={18} strokeWidth={2} />
     }
   ];
@@ -104,21 +92,21 @@ export function FloatingContactWidget() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.94 }}
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.94 }}
-            transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-            className="absolute bottom-16 right-0 mb-2 w-[310px] sm:w-[340px] max-w-[calc(100vw-2rem)] origin-bottom-right rounded-2xl border border-white/10 bg-brand-card/95 p-4 sm:p-5 shadow-2xl shadow-black/90 backdrop-blur-xl text-brand-light"
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            className="absolute bottom-16 right-0 mb-2 w-[310px] sm:w-[340px] max-w-[calc(100vw-2rem)] origin-bottom-right rounded-2xl border border-gray-200 bg-white p-5 shadow-2xl text-gray-900"
             role="dialog"
             aria-modal="true"
             aria-label="Связаться с мастером"
           >
             {/* Header / Profile */}
-            <div className="flex items-center justify-between pb-4 border-b border-brand-light/10">
+            <div className="flex items-center justify-between pb-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                {/* Avatar with fallback & online badge */}
+                {/* Avatar with fallback */}
                 <div className="relative shrink-0">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border border-brand-light/20 bg-brand-black flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-gray-200 bg-gray-100 flex items-center justify-center">
                     {!imgError ? (
                       <img
                         src="/azhur/photo/hero.webp"
@@ -127,27 +115,26 @@ export function FloatingContactWidget() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <span className="font-display text-sm font-bold text-brand-light uppercase tracking-wider">
+                      <span className="text-sm font-bold text-gray-800">
                         ОМ
                       </span>
                     )}
                   </div>
                   <span
-                    className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-brand-card shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+                    className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"
                     title="Онлайн"
                   />
                 </div>
 
                 {/* Master Info */}
-                <div className="space-y-0.5">
-                  <h3 className="font-display text-sm font-bold text-white tracking-tight uppercase">
+                <div>
+                  <h3 className="text-sm font-bold text-gray-950">
                     Олег Мисягин
                   </h3>
-                  <p className="text-[11px] text-brand-gray font-sans leading-tight">
+                  <p className="text-xs text-gray-600">
                     Мастер по натяжным потолкам
                   </p>
-                  <p className="text-[10px] font-mono text-emerald-400 flex items-center gap-1.5 pt-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <p className="text-[11px] text-emerald-700 font-semibold pt-0.5">
                     Отвечаю в течение 5 минут
                   </p>
                 </div>
@@ -157,7 +144,7 @@ export function FloatingContactWidget() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="text-brand-gray hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
+                className="text-gray-400 hover:text-gray-800 p-1 rounded-lg transition-colors cursor-pointer"
                 aria-label="Закрыть окно"
               >
                 <X size={18} />
@@ -165,7 +152,7 @@ export function FloatingContactWidget() {
             </div>
 
             {/* Subheader */}
-            <p className="text-xs text-brand-gray py-3 font-sans">
+            <p className="text-xs text-gray-600 py-3 font-normal leading-relaxed">
               Выберите удобный способ связи для консультации или бесплатного замера:
             </p>
 
@@ -178,34 +165,34 @@ export function FloatingContactWidget() {
                   target={item.target}
                   rel={item.rel}
                   onClick={() => handleLinkClick(item.id)}
-                  className={`group flex items-center justify-between p-3 rounded-xl border border-white/5 bg-brand-black/60 transition-all duration-200 ${item.colorClasses}`}
+                  className="group flex items-center justify-between p-3 rounded-xl border border-gray-200 bg-gray-50/70 hover:bg-white hover:border-gray-300 hover:shadow-xs transition-all duration-200"
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className={`w-9 h-9 rounded-lg flex items-center justify-center border transition-transform duration-200 group-hover:scale-105 ${item.badgeBg}`}
+                      className={`w-9 h-9 rounded-lg flex items-center justify-center ${item.iconBg}`}
                     >
                       {item.icon}
                     </div>
                     <div className="text-left">
-                      <div className="text-xs font-semibold text-white tracking-wide">
+                      <div className="text-xs font-bold text-gray-950">
                         {item.title}
                       </div>
-                      <div className="text-[11px] text-brand-gray group-hover:text-white/80 transition-colors font-mono">
+                      <div className="text-[11px] text-gray-600">
                         {item.subtitle}
                       </div>
                     </div>
                   </div>
                   <ChevronRight
                     size={16}
-                    className="text-brand-gray/60 group-hover:text-white group-hover:translate-x-0.5 transition-all"
+                    className="text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all"
                   />
                 </a>
               ))}
             </div>
 
             {/* Footer reassurance note */}
-            <div className="mt-3 pt-2 text-center border-t border-brand-light/5">
-              <span className="font-mono text-[9px] uppercase tracking-wider text-brand-gray/70">
+            <div className="mt-3 pt-2 text-center border-t border-gray-100">
+              <span className="text-[10px] text-gray-500">
                 Консультация и выезд на замер — бесплатно
               </span>
             </div>
@@ -219,17 +206,12 @@ export function FloatingContactWidget() {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Закрыть контакты' : 'Связаться с мастером Олегом'}
-        className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black ${
+        className={`relative flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-all duration-200 cursor-pointer focus:outline-none ${
           isOpen
-            ? 'bg-brand-card border border-white/20 text-white hover:bg-brand-card/80 hover:rotate-90'
-            : 'bg-brand-red text-white hover:bg-brand-red/90 hover:scale-105 active:scale-95 shadow-[0_0_24px_rgba(139,0,0,0.6)]'
+            ? 'bg-gray-900 text-white hover:bg-gray-800'
+            : 'bg-brand-red text-white hover:bg-brand-red-hover hover:scale-105 active:scale-95'
         }`}
       >
-        {/* Pulsing ring when closed */}
-        {!isOpen && (
-          <span className="absolute -inset-1 rounded-full bg-brand-red/40 animate-ping duration-1000 -z-10 pointer-events-none" />
-        )}
-
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
             <motion.div
@@ -239,20 +221,17 @@ export function FloatingContactWidget() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
-              <X size={24} strokeWidth={2} />
+              <X size={22} strokeWidth={2.5} />
             </motion.div>
           ) : (
             <motion.div
-              key="chat-icon"
-              initial={{ scale: 0.7, opacity: 0 }}
+              key="phone-icon"
+              initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.7, opacity: 0 }}
+              exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="relative"
             >
-              <MessageSquare size={24} strokeWidth={1.8} />
-              {/* Little notification ping dot */}
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-brand-red" />
+              <MessageCircle size={24} strokeWidth={2} />
             </motion.div>
           )}
         </AnimatePresence>

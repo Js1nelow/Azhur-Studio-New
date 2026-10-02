@@ -59,61 +59,57 @@ export function ContactFormBlock() {
 
   const features = [
     {
-      icon: <Phone size={18} strokeWidth={1.5} className="text-brand-red shrink-0" />,
-      text: "Звонок в течение 15 минут"
+      icon: <Phone size={20} className="text-brand-red shrink-0" />,
+      text: "Звонок мастера в течение 15 минут"
     },
     {
-      icon: <Calculator size={18} strokeWidth={1.5} className="text-brand-red shrink-0" />,
-      text: "Бесплатный расчёт сметы"
+      icon: <Calculator size={20} className="text-brand-red shrink-0" />,
+      text: "Бесплатный расчет сметы до копейки"
     },
     {
-      icon: <Ruler size={18} strokeWidth={1.5} className="text-brand-red shrink-0" />,
-      text: "Выезд специалиста на объект"
+      icon: <Ruler size={20} className="text-brand-red shrink-0" />,
+      text: "Выезд на замер с каталогом полотен"
     }
   ];
 
   return (
-    <section id="contact" className="relative bg-brand-black py-24 md:py-32 overflow-hidden border-t border-brand-light/5">
-      {/* Decorative ambient elements */}
-      <div className="absolute top-0 right-1/3 w-[1px] h-32 bg-gradient-to-b from-brand-red/10 to-transparent" />
-      <div className="absolute bottom-0 right-10 w-[300px] h-[300px] rounded-full bg-brand-red/5 blur-[120px] pointer-events-none" />
-
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+    <section id="contact" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Column: Title & Info */}
-          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-brand-red uppercase tracking-widest">[ ОБРАТНАЯ СВЯЗЬ ]</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-[1.1] text-brand-light uppercase tracking-tight text-balance">
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
+            <div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight leading-tight mb-4">
                 Обсудим ваш проект
               </h2>
-              <p className="text-brand-gray text-sm md:text-base leading-relaxed max-w-md font-sans">
-                Оставьте заявку — перезвоним в течение 15 минут и ответим на все вопросы
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                Оставьте номер — мастер свяжется с вами, ответит на любые технические вопросы и назовет ориентировочную стоимость.
               </p>
             </div>
 
-            {/* Icon list */}
-            <div className="space-y-4 pt-4 border-t border-brand-light/10">
+            {/* Benefit list */}
+            <div className="space-y-4 pt-6 border-t border-gray-200">
               {features.map((feature, i) => (
-                <div key={i} className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-none bg-brand-card border border-brand-light/5 flex items-center justify-center transition-colors group-hover:border-brand-red/30">
+                <div key={i} className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-orange-50 border border-orange-100">
                     {feature.icon}
                   </div>
-                  <span className="font-mono text-xs md:text-sm uppercase tracking-wider text-brand-light">
-                    — {feature.text}
+                  <span className="text-sm font-semibold text-gray-900">
+                    {feature.text}
                   </span>
                 </div>
               ))}
             </div>
+
+            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-xs text-gray-600 leading-relaxed">
+              Работаем по всей Москве и Московской области. Выезжаем на замер ежедневно без выходных.
+            </div>
           </div>
 
-          {/* Right Column: Interactive Form */}
+          {/* Right Column: Form */}
           <div className="lg:col-span-7">
-            <div className="bg-brand-card/30 border border-brand-light/5 p-8 md:p-10 relative">
-              
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-lg">
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.form
@@ -122,11 +118,13 @@ export function ContactFormBlock() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onSubmit={handleSubmit}
-                    className="space-y-6"
+                    className="space-y-5"
                   >
-                    {/* Honeypot anti-spam field */}
-                    <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+                    {/* Honeypot field for bot protection */}
+                    <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                      <label htmlFor="user_website_check">Не заполняйте это поле</label>
                       <input
+                        id="user_website_check"
                         type="text"
                         name="user_website_check"
                         tabIndex={-1}
@@ -137,67 +135,76 @@ export function ContactFormBlock() {
                     </div>
 
                     {error && (
-                      <div className="p-4 bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm">
+                      <div className="p-4 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
                         {error}
                       </div>
                     )}
+
                     {/* Name input */}
-                    <div className="space-y-2">
-                      <label className="block font-mono text-[10px] uppercase text-brand-gray tracking-wider">Ваше имя</label>
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-semibold text-gray-700">
+                        Ваше имя
+                      </label>
                       <input
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Как к вам обращаться"
-                        className="w-full bg-brand-black border border-brand-light/10 focus:border-brand-red/50 px-4 py-4 text-sm text-brand-light rounded-none outline-none transition-colors font-sans placeholder:text-brand-gray/50"
+                        className="w-full bg-white border border-gray-300 focus:border-brand-red focus:ring-2 focus:ring-brand-red/10 px-4 py-3.5 text-sm text-gray-950 rounded-lg outline-none transition-all placeholder:text-gray-400"
                       />
                     </div>
 
                     {/* Phone input */}
-                    <div className="space-y-2">
-                      <label className="block font-mono text-[10px] uppercase text-brand-gray tracking-wider">Телефон <span className="text-brand-red">*</span></label>
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-semibold text-gray-700">
+                        Телефон <span className="text-brand-red">*</span>
+                      </label>
                       <input
                         type="tel"
                         required
                         value={phone}
                         onChange={handlePhoneChange}
                         placeholder="+7 (999) 000-00-00"
-                        className="w-full bg-brand-black border border-brand-light/10 focus:border-brand-red/50 px-4 py-4 text-sm text-brand-light rounded-none outline-none transition-colors font-sans placeholder:text-brand-gray/50"
+                        className="w-full bg-white border border-gray-300 focus:border-brand-red focus:ring-2 focus:ring-brand-red/10 px-4 py-3.5 text-sm text-gray-950 rounded-lg outline-none transition-all placeholder:text-gray-400"
                       />
                     </div>
 
-                    {/* Comment (Optional) */}
-                    <div className="space-y-2">
-                      <label className="block font-mono text-[10px] uppercase text-brand-gray tracking-wider">Комментарий (необязательно)</label>
+                    {/* Comment */}
+                    <div className="space-y-1.5">
+                      <label className="block text-xs font-semibold text-gray-700">
+                        Комментарий или площадь (необязательно)
+                      </label>
                       <textarea
                         rows={3}
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
-                        placeholder="Расскажите о вашем проекте"
-                        className="w-full bg-brand-black border border-brand-light/10 focus:border-brand-red/50 px-4 py-4 text-sm text-brand-light rounded-none outline-none transition-colors font-sans resize-none placeholder:text-brand-gray/50"
+                        placeholder="Например: 2-комнатная квартира 54 м², нужен теневой профиль"
+                        className="w-full bg-white border border-gray-300 focus:border-brand-red focus:ring-2 focus:ring-brand-red/10 px-4 py-3.5 text-sm text-gray-950 rounded-lg outline-none transition-all resize-none placeholder:text-gray-400"
                       />
                     </div>
 
-                    {/* Submit Button */}
+                    {/* Privacy */}
                     <PrivacyConsent />
+
+                    {/* Submit Button */}
                     <button
                       type="submit"
                       disabled={isSubmitting || !isPhoneValid}
-                      className={`w-full font-mono text-xs uppercase tracking-widest py-5 transition-all font-medium flex items-center justify-center gap-2 cursor-pointer ${
+                      className={`w-full py-4 rounded-lg font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
                         isPhoneValid
-                          ? 'bg-brand-red hover:bg-brand-red/90 text-white shadow-[0_0_20px_rgba(255,51,51,0.3)]'
-                          : 'bg-brand-black border border-brand-light/10 text-brand-gray cursor-not-allowed'
+                          ? 'bg-brand-red hover:bg-brand-red-hover text-white hover:shadow-md'
+                          : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                       }`}
                     >
                       {isSubmitting ? (
                         <>
                           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          <span>Отправка...</span>
+                          <span>Отправка заявки...</span>
                         </>
                       ) : (
                         <>
-                          <span>Отправить заявку</span>
-                          <ArrowRight size={14} />
+                          <span>Получить расчет сметы</span>
+                          <ArrowRight size={16} />
                         </>
                       )}
                     </button>
@@ -207,32 +214,22 @@ export function ContactFormBlock() {
                     key="success-message"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="py-12 text-center space-y-6"
+                    className="py-10 text-center space-y-4"
                   >
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-none bg-brand-red/10 border border-brand-red/30 text-brand-red mb-2">
-                      <CheckCircle size={32} />
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 mb-2">
+                      <CheckCircle size={28} />
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="text-xl md:text-2xl font-display uppercase tracking-tight text-brand-light">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-950">
                         Заявка принята!
                       </h3>
-                      <p className="text-brand-gray font-sans text-sm max-w-sm mx-auto leading-relaxed">
-                        Спасибо за обращение. Мы перезвоним вам в течение 15 минут для детального обсуждения вашего проекта.
+                      <p className="text-gray-600 text-sm max-w-sm mx-auto mt-2 leading-relaxed">
+                        Спасибо! Олег свяжется с вами в течение 15 минут для уточнения деталей и расчета сметы.
                       </p>
                     </div>
-                    <button
-                      onClick={() => setIsSubmitted(false)}
-                      className="bg-transparent border border-brand-light/20 hover:border-brand-light text-brand-light font-mono text-xs uppercase tracking-wider px-8 py-3 transition-colors cursor-pointer"
-                    >
-                      Отправить ещё раз
-                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              {/* Top and bottom designer lines */}
-              <div className="absolute top-0 left-0 w-0 h-[1px] bg-brand-red transition-all duration-700 group-hover:w-full" />
-              <div className="absolute bottom-0 right-0 w-0 h-[1px] bg-brand-red transition-all duration-700 group-hover:w-full" />
             </div>
           </div>
 

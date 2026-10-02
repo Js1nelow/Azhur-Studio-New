@@ -15,7 +15,7 @@ const reviews: Review[] = [
   {
     id: 1,
     rating: 5,
-    text: "Делали парящий потолок в гостиной. Приехали вовремя, убрали за собой, всё сделали за день. Олег лично контролировал каждый этап — это чувствуется в результате.",
+    text: "Делали парящий потолок в гостиной. Приехали вовремя, убрали за собой строительный мусор, всё сделали за один день. Олег лично контролировал монтаж — результат идеальный, никаких зазоров и складок.",
     author: "Марина К.",
     city: "Москва",
     project: "Парящий потолок"
@@ -23,24 +23,24 @@ const reviews: Review[] = [
   {
     id: 2,
     rating: 5,
-    text: "Долго выбирали между разными студиями. Остановились на Ажур — и не пожалели. Смета не изменилась ни на рубль, всё как договорились.",
+    text: "Долго выбирали компанию в новостройку. Остановились на Ажур и не прогадали. Смета была зафиксирована в договоре и не выросла ни на рубль при сдаче. Полотна действительно без запаха.",
     author: "Дмитрий В.",
-    city: "Москва",
-    project: "Карнизные решения + световые линии"
+    city: "Красногорск",
+    project: "Карнизные ниши + треки"
   },
   {
     id: 3,
     rating: 5,
-    text: "Сделали теневой профиль по всему периметру. Эффект парящего потолка — именно то что хотели. Спасибо за терпение при выборе решения.",
+    text: "Сделали теневой профиль EuroKRAAB по всей квартире. Идеально ровный темный зазор без резиновых вставок. Спасибо за аккуратность и чистую работу с пылесосом!",
     author: "Анна С.",
-    city: "Подмосковье",
+    city: "Химки",
     project: "Теневой профиль EuroKRAAB"
   }
 ];
 
 export function ReviewsBlock() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(0); // -1 for left, 1 for right
+  const [direction, setDirection] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
@@ -78,7 +78,6 @@ export function ReviewsBlock() {
     }
   };
 
-  // Slide animations mapping
   const slideVariants = {
     enter: (dir: number) => ({
       x: dir > 0 ? 100 : -100,
@@ -95,70 +94,63 @@ export function ReviewsBlock() {
   };
 
   return (
-    <section id="reviews" className="relative bg-brand-dark py-20 md:py-28 overflow-hidden border-t border-brand-light/5">
-      {/* Aesthetic lines / dots decoration */}
-      <div className="absolute top-0 left-1/4 w-[1px] h-32 bg-gradient-to-b from-brand-red/10 to-transparent" />
-      <div className="absolute top-1/2 right-10 w-[200px] h-[200px] rounded-full bg-brand-red/5 blur-[80px] pointer-events-none" />
-
+    <section id="reviews" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+        
         {/* Section Header */}
-        <div className="mb-16">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="font-mono text-xs text-brand-red uppercase tracking-widest">[ ОТЗЫВЫ О НАШЕЙ РАБОТЕ ]</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-brand-light leading-none uppercase tracking-tight">
-            Что говорят клиенты
+        <div className="mb-12 md:mb-16 max-w-2xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight mb-4">
+            Отзывы наших заказчиков
           </h2>
+          <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+            Реальные впечатления клиентов после монтажа и сдачи объектов
+          </p>
         </div>
 
-        {/* Desktop: 3 Columns Grid of reviews */}
-        <div className="hidden md:grid grid-cols-3 gap-6 md:gap-8">
+        {/* Desktop: 3 Columns Grid */}
+        <div className="hidden md:grid grid-cols-3 gap-6">
           {reviews.map((review, index) => (
             <motion.div
               key={review.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-brand-card/35 border border-brand-light/5 hover:border-brand-red/30 transition-all duration-500 p-8 flex flex-col justify-between group relative"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-gray-50 border border-gray-200 rounded-2xl p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow"
             >
-              {/* Star Rating & Accent line */}
               <div>
-                <div className="flex items-center gap-1 mb-6">
+                {/* Stars */}
+                <div className="flex items-center gap-1 mb-5">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} size={14} className="fill-brand-red text-brand-red shrink-0" />
+                    <Star key={i} size={16} className="fill-amber-400 text-amber-400 shrink-0" />
                   ))}
                 </div>
 
                 {/* Review Text */}
-                <p className="text-brand-light/90 text-sm sm:text-base leading-relaxed mb-8 font-sans font-light italic">
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-6">
                   «{review.text}»
                 </p>
               </div>
 
-              {/* Review Author & Project details */}
-              <div className="border-t border-brand-light/5 pt-5 mt-auto">
-                <div className="font-display text-sm text-brand-light uppercase tracking-wider font-semibold group-hover:text-brand-red transition-colors duration-300">
+              {/* Author & Project */}
+              <div className="border-t border-gray-200 pt-4 mt-auto">
+                <div className="text-sm font-bold text-gray-950">
                   {review.author}
                 </div>
-                <div className="font-mono text-[10px] text-brand-gray uppercase tracking-widest mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+                <div className="text-xs text-gray-500 mt-1 flex items-center gap-2">
                   <span>{review.city}</span>
-                  <span className="text-brand-red/60">•</span>
-                  <span className="text-brand-light/70">{review.project}</span>
+                  <span>•</span>
+                  <span className="text-brand-red font-medium">{review.project}</span>
                 </div>
               </div>
-
-              {/* Top and side hover highlights */}
-              <div className="absolute top-0 left-0 w-0 h-[1px] bg-brand-red transition-all duration-500 group-hover:w-full" />
-              <div className="absolute bottom-0 right-0 w-0 h-[1px] bg-brand-red transition-all duration-500 group-hover:w-full" />
             </motion.div>
           ))}
         </div>
 
-        {/* Mobile: Swipeable Carousel */}
-        <div className="md:hidden flex flex-col items-stretch space-y-6">
+        {/* Mobile: Carousel */}
+        <div className="md:hidden flex flex-col space-y-6">
           <div 
-            className="relative min-h-[280px] overflow-hidden"
+            className="overflow-hidden min-h-[260px] relative touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -171,84 +163,68 @@ export function ReviewsBlock() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-brand-card/35 border border-brand-light/5 p-8 flex flex-col justify-between min-h-[280px] relative w-full"
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="bg-gray-50 border border-gray-200 rounded-2xl p-6 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center gap-1 mb-6">
+                  <div className="flex items-center gap-1 mb-4">
                     {[...Array(reviews[activeIndex].rating)].map((_, i) => (
-                      <Star key={i} size={14} className="fill-brand-red text-brand-red shrink-0" />
+                      <Star key={i} size={16} className="fill-amber-400 text-amber-400 shrink-0" />
                     ))}
                   </div>
 
-                  <p className="text-brand-light/90 text-sm leading-relaxed mb-8 font-sans font-light italic">
+                  <p className="text-gray-700 text-sm leading-relaxed mb-6">
                     «{reviews[activeIndex].text}»
                   </p>
                 </div>
 
-                <div className="border-t border-brand-light/5 pt-5 mt-auto">
-                  <div className="font-display text-sm text-brand-light uppercase tracking-wider font-semibold">
+                <div className="border-t border-gray-200 pt-4">
+                  <div className="text-sm font-bold text-gray-950">
                     {reviews[activeIndex].author}
                   </div>
-                  <div className="font-mono text-[10px] text-brand-gray uppercase tracking-widest mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <span>{reviews[activeIndex].city}</span>
-                    <span className="text-brand-red/60">•</span>
-                    <span className="text-brand-light/70">{reviews[activeIndex].project}</span>
+                  <div className="text-xs text-gray-500 mt-1">
+                    {reviews[activeIndex].city} • <span className="text-brand-red font-medium">{reviews[activeIndex].project}</span>
                   </div>
-                </div>
-
-                {/* Aesthetic slide indicator corner */}
-                <div className="absolute top-4 right-4 font-mono text-[10px] text-brand-gray/40">
-                  {activeIndex + 1} / {reviews.length}
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Navigation Controls: Buttons & Dots */}
-          <div className="flex items-center justify-between px-2 pt-2">
-            {/* Dots */}
-            <div className="flex items-center gap-2">
-              {reviews.map((_, index) => (
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-between pt-2">
+            <div className="flex gap-2">
+              {reviews.map((_, i) => (
                 <button
-                  key={index}
+                  key={i}
                   onClick={() => {
-                    setDirection(index > activeIndex ? 1 : -1);
-                    setActiveIndex(index);
+                    setDirection(i > activeIndex ? 1 : -1);
+                    setActiveIndex(i);
                   }}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    activeIndex === index ? 'w-6 bg-brand-red' : 'w-1.5 bg-brand-light/10 hover:bg-brand-light/30'
+                  className={`h-2 rounded-full transition-all ${
+                    i === activeIndex ? 'w-6 bg-brand-red' : 'w-2 bg-gray-300'
                   }`}
-                  aria-label={`Go to slide ${index + 1}`}
+                  aria-label={`Отзыв ${i + 1}`}
                 />
               ))}
             </div>
 
-            {/* Red Arrow Buttons */}
-            <div className="flex items-center gap-2">
+            <div className="flex gap-2">
               <button
                 onClick={handlePrev}
-                className="p-3 bg-brand-card border border-brand-light/5 text-brand-light hover:text-brand-red hover:border-brand-red/30 transition-colors duration-300"
-                aria-label="Previous Review"
+                className="p-2.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
+                aria-label="Предыдущий отзыв"
               >
                 <ArrowLeft size={16} />
               </button>
               <button
                 onClick={handleNext}
-                className="p-3 bg-brand-card border border-brand-light/5 text-brand-light hover:text-brand-red hover:border-brand-red/30 transition-colors duration-300"
-                aria-label="Next Review"
+                className="p-2.5 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
+                aria-label="Следующий отзыв"
               >
                 <ArrowRight size={16} />
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Yandex Maps Note */}
-        <div className="mt-10 md:mt-12 text-center md:text-left">
-          <p className="font-sans text-xs text-brand-gray/60">
-            Собираем отзывы на Яндекс Картах — скоро добавим ссылку
-          </p>
         </div>
 
       </div>

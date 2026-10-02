@@ -65,9 +65,6 @@ export function Home({ onOpenCalculator }: HomeProps) {
         <AboutBlock />
       </FadeIn>
       <FadeIn>
-        <PartnersCtaBlock />
-      </FadeIn>
-      <FadeIn>
         <FaqBlock />
       </FadeIn>
       <FadeIn>

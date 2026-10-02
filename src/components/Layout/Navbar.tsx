@@ -117,18 +117,10 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
 
         {/* Right Side: Estimate CTAs */}
         <div className="flex items-center justify-end gap-3 lg:gap-4">
-          {/* Partners Button */}
-          <button
-            onClick={() => navigateWithTransition('/partners', 'ПАРТНЕРЫ')}
-            className="hidden lg:block border border-gray-300 hover:border-gray-900 text-brand-light px-4 py-2 text-xs uppercase tracking-wider transition-all cursor-pointer font-medium rounded-lg"
-          >
-            Партнёрам
-          </button>
-
           {/* Calculate Button (Only visible on lg+) */}
           <button
             onClick={() => onOpenCalculator()}
-            className="hidden lg:block bg-brand-red hover:bg-brand-red/90 text-white px-5 py-2.5 text-xs uppercase tracking-wider transition-all cursor-pointer font-semibold rounded-lg shadow-sm hover:shadow-md"
+            className="hidden sm:block bg-brand-red hover:bg-brand-red-hover text-white px-5 py-2.5 text-xs uppercase tracking-wider transition-all cursor-pointer font-semibold rounded-lg shadow-sm hover:shadow-md"
           >
             Рассчитать смету
           </button>
@@ -178,27 +170,18 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
             </nav>
 
             <div className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto shrink-0 mt-8">
-              <div className="flex w-full gap-3">
-                <button
-                  onClick={() => {
-                    setIsOpen(false);
-                    navigateWithTransition('/partners', 'ПАРТНЕРЫ');
-                  }}
-                  className="flex-1 border border-brand-light/30 hover:border-brand-light text-brand-light flex items-center justify-center font-mono text-[10px] uppercase tracking-widest py-3 transition-all cursor-pointer text-center"
-                >
-                  Партнёрам
-                </button>
+              <div className="w-full">
                 <button
                   onClick={() => {
                     setIsOpen(false);
                     onOpenCalculator();
                   }}
-                  className="flex-1 bg-brand-red hover:bg-brand-red/90 text-white font-mono text-[10px] uppercase tracking-widest py-3 transition-all cursor-pointer text-center"
+                  className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-xs uppercase tracking-wider py-3.5 rounded-lg font-semibold transition-all cursor-pointer text-center"
                 >
                   Рассчитать смету
                 </button>
               </div>
-              <div className="font-mono text-[10px] text-brand-gray tracking-wider">
+              <div className="text-xs text-gray-500">
                 <div>АЖУР СТУДИЯ • МОСКВА И МО</div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { ArrowRight, Plus, Minus } from 'lucide-react';
 import { LazyVideo } from './LazyVideo';
 
 interface DreamCeilingBlockProps {
@@ -13,129 +13,111 @@ export function DreamCeilingBlock({ onOpenCalculator }: DreamCeilingBlockProps) 
   const steps = [
     {
       num: "01",
-      title: "Погружение в проект",
-      desc: "чтобы не переделывать",
-      details: "Слушаем вас, смотрим пространство, задаём вопросы. Понимаем задачу прежде чем предлагать решения."
+      title: "Заявка и консультация",
+      desc: "расчет за 5 минут",
+      details: "Обсуждаем планировку, тип полотна и освещения. Называем ориентировочную стоимость и согласовываем удобное время замера."
     },
     {
       num: "02",
-      title: "Подбор решения под задачу и бюджет",
-      desc: "без потери качества",
-      details: "Не навязываем дорогое. Подбираем то что реально подходит вашему интерьеру и кошельку."
+      title: "Бесплатный выезд на замер",
+      desc: "с образцами полотен",
+      details: "Олег лично привозит образцы фактур (матовые, сатин, EuroKRAAB). Выбираете материал вживую при вашем комнатном освещении."
     },
     {
       num: "03",
-      title: "Точная смета",
+      title: "Фиксированная смета и договор",
       desc: "цена не меняется",
-      details: "Фиксируем стоимость до начала работ. Цена не меняется в процессе."
+      details: "Составляем прозрачную спецификацию до копейки. Заключаем договор с гарантией 10 лет. Сумма в договоре окончательная."
     },
     {
       num: "04",
-      title: "Подготовка и координация",
-      desc: "вы не тратите нервы",
-      details: "Согласуем дату, подготавливаем материалы, приезжаем вовремя."
+      title: "Раскрой полотна на производстве",
+      desc: "за 24 часа",
+      details: "Полотно кроится на станке точно по лазерным замерам помещения с огарпуниванием по ГОСТу."
     },
     {
       num: "05",
-      title: "Монтаж от мастеров",
-      desc: "за один день",
-      details: "Работаем аккуратно, без пыли и грязи. Один день — и потолок готов."
+      title: "Чистый монтаж",
+      desc: "за один день без пыли",
+      details: "Используем перфораторы с пылеудалением и безопасные композитные баллоны. Укрываем стены и мебель."
     },
     {
       num: "06",
-      title: "Сдача объекта с гарантией",
-      desc: "10 лет",
-      details: "Принимаем работу вместе с вами. Устраняем замечания на месте. Выдаём гарантийный документ."
+      title: "Сдача и уборка",
+      desc: "принимаете идеальный потолок",
+      details: "Убираем за собой строительный мусор, проверяем работу каждого светильника и подписываем акт приемки."
     }
   ];
 
   return (
-    <section id="process" className="relative bg-brand-black py-24 md:py-36 overflow-hidden border-t border-brand-light/5">
-      {/* Subtle minimalist background visual elements */}
-      <div className="absolute top-0 right-1/4 w-[1px] h-48 bg-gradient-to-b from-brand-red/20 to-transparent" />
-      <div className="absolute bottom-0 left-1/3 w-[300px] h-[300px] rounded-full bg-brand-red/5 blur-[120px] pointer-events-none" />
-
+    <section id="process" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           
           {/* Left Column: Headline */}
           <div className="lg:col-span-5 flex flex-col justify-between">
-            <div className="space-y-6">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-brand-red uppercase tracking-widest">[ КАК РОЖДАЕТСЯ ПОТОЛОК ВАШЕЙ МЕЧТЫ ]</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[52px] font-display font-bold leading-[1.1] text-brand-light uppercase tracking-tight text-balance">
-                Берём на себя всё — от идеи до финальной сдачи
+            <div className="space-y-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight leading-tight">
+                Как проходит работа: 6 понятных шагов
               </h2>
-            </div>
-            
-            {/* Video container with 4:3 aspect ratio */}
-            <div className="my-8 lg:my-10 aspect-[4/3] w-full max-w-[460px] rounded-none overflow-hidden bg-brand-card/50 border border-brand-light/5 relative group/img">
-              <div className="absolute inset-0 bg-brand-black/20 md:group-hover/img:bg-brand-black/10 transition-colors duration-500 z-10 pointer-events-none" />
-              <LazyVideo
-                src="/azhur/photo/pro.mp4"
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover/img:scale-105 group-hover/img:scale-100"
-              />
-            </div>
-            
-            {/* Desktop spacer or decoration to balance negative space */}
-            <div className="hidden lg:block mt-auto">
-              <div className="h-[1px] w-24 bg-brand-red" />
-              <p className="mt-4 font-mono text-[10px] text-brand-gray uppercase tracking-widest leading-relaxed">
-                Индивидуальное проектирование <br />
-                и безупречная реализация
+              <p className="text-gray-600 text-base leading-relaxed">
+                От первого сообщения до готового чистого потолка без сюрпризов, нервов и переплат.
               </p>
+            </div>
+
+            {/* Video Showcase Card */}
+            <div className="hidden lg:block mt-8">
+              <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-md aspect-video bg-gray-100">
+                <LazyVideo
+                  src="/new_image_azhur/IMG_0756.mp4"
+                  poster="/azhur/photo/hero.webp"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                  <div className="text-white text-xs font-medium">
+                    Процесс чистого монтажа с пылесосом
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Stages List */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="divide-y divide-brand-light/10 border-b border-brand-light/10">
-              {steps.map((step, index) => {
+          {/* Right Column: Steps Accordion */}
+          <div className="lg:col-span-7">
+            <div className="divide-y divide-gray-200 border-t border-b border-gray-200">
+              {steps.map((step) => {
                 const isOpen = activeStep === step.num;
                 return (
-                  <motion.div
-                    key={step.num}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: '-20px' }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                    className="group"
-                  >
+                  <div key={step.num} className="group">
                     <button
                       onClick={() => setActiveStep(isOpen ? null : step.num)}
-                      className="w-full text-left py-6 md:py-8 flex items-start gap-6 hover:border-brand-red/30 transition-colors duration-300 focus:outline-none cursor-pointer"
+                      className="w-full text-left py-5 sm:py-6 flex items-start gap-5 focus:outline-none cursor-pointer"
                     >
-                      {/* Number Accent */}
-                      <span className={`font-display text-xl md:text-2xl font-medium leading-none select-none transition-all duration-300 ${
-                        isOpen ? 'text-brand-red scale-110' : 'text-brand-gray group-hover:text-brand-red group-hover:scale-105'
+                      {/* Step Number */}
+                      <span className={`font-mono text-base font-bold leading-6 shrink-0 transition-colors ${
+                        isOpen ? 'text-brand-red' : 'text-gray-400 group-hover:text-brand-red'
                       }`}>
                         {step.num}
                       </span>
                       
-                      {/* Content Container */}
-                      <div className="flex-grow flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 md:gap-4 pr-4">
-                        <h3 className={`text-base sm:text-lg md:text-xl font-display uppercase tracking-tight transition-colors duration-300 ${
-                          isOpen ? 'text-white' : 'text-brand-light group-hover:text-white'
+                      {/* Content */}
+                      <div className="flex-grow flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 pr-3">
+                        <h3 className={`text-base sm:text-lg font-bold transition-colors leading-snug ${
+                          isOpen ? 'text-brand-red' : 'text-gray-950 group-hover:text-brand-red'
                         }`}>
                           {step.title}
                         </h3>
-                        <span className={`font-mono text-xs md:text-sm uppercase tracking-wider shrink-0 transition-colors duration-300 ${
-                          isOpen ? 'text-brand-red' : 'text-brand-gray group-hover:text-brand-light'
-                        }`}>
-                          — {step.desc}
+                        <span className="text-xs text-gray-500 shrink-0">
+                          {step.desc}
                         </span>
                       </div>
 
-                      {/* Accordion Indicator Icon */}
-                      <div className="shrink-0 mt-0.5 text-brand-gray group-hover:text-brand-red transition-colors duration-300">
+                      {/* Plus/Minus Indicator */}
+                      <div className="shrink-0 mt-0.5 text-gray-400 group-hover:text-brand-red transition-colors">
                         {isOpen ? (
-                          <Minus size={16} className="text-brand-red" />
+                          <Minus size={20} className="text-brand-red" />
                         ) : (
-                          <Plus size={16} />
+                          <Plus size={20} />
                         )}
                       </div>
                     </button>
@@ -147,38 +129,32 @@ export function DreamCeilingBlock({ onOpenCalculator }: DreamCeilingBlockProps) 
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: 'easeInOut' }}
+                          transition={{ duration: 0.25, ease: 'easeInOut' }}
                           className="overflow-hidden"
                         >
-                          <div className="pb-6 md:pb-8 pl-12 md:pl-14 max-w-2xl">
-                            <p className="text-sm md:text-base text-brand-gray leading-relaxed font-sans">
+                          <div className="pb-5 pl-9 sm:pl-10 max-w-2xl">
+                            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                               {step.details}
                             </p>
                           </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
 
-            {/* Red outline Action Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-12 flex justify-start"
-            >
+            {/* Action Button */}
+            <div className="mt-8 flex justify-start">
               <button
                 onClick={() => onOpenCalculator('Обсуждение проекта')}
-                className="group relative inline-flex items-center justify-center gap-3 border border-brand-red hover:bg-brand-red hover:shadow-lg hover:shadow-brand-red/10 text-brand-light hover:text-white font-mono text-xs uppercase tracking-widest px-8 py-5 transition-all duration-300 font-medium cursor-pointer"
+                className="bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all flex items-center gap-2 cursor-pointer group"
               >
-                <span>Обсудить проект</span>
-                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span>Вызвать мастера на замер</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
-            </motion.div>
+            </div>
           </div>
 
         </div>
@@ -186,4 +162,3 @@ export function DreamCeilingBlock({ onOpenCalculator }: DreamCeilingBlockProps) 
     </section>
   );
 }
-

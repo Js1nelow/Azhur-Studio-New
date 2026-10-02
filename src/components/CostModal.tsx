@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Check, Calculator, Phone } from 'lucide-react';
+import { X, CheckCircle, Calculator, ArrowRight } from 'lucide-react';
 import { reachMetrikaGoal } from './YandexMetrika';
 import { PrivacyConsent } from './PrivacyConsent';
 import { usePhoneInput } from '../hooks/usePhoneInput';
@@ -11,9 +11,9 @@ interface CostModalProps {
   selectedService?: string;
 }
 
-export function CostModal({ isOpen, onClose, selectedService = 'Натяжные потолки' }: CostModalProps) {
-  const [services, setServices] = useState<string[]>([selectedService]);
-  const [area, setArea] = useState(25);
+export function CostModal({ isOpen, onClose, selectedService }: CostModalProps) {
+  const [services, setServices] = useState<string[]>(['Натяжные потолки']);
+  const [area, setArea] = useState<number>(20);
   const [name, setName] = useState('');
   const { phone, handlePhoneChange, isPhoneValid, resetPhone } = usePhoneInput();
   const [honeypotValue, setHoneypotValue] = useState('');
@@ -21,7 +21,6 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Sync state with selectedService prop when modal opens
   useEffect(() => {
     if (isOpen && selectedService) {
       setServices([selectedService]);
@@ -30,7 +29,9 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
 
   const toggleService = (item: string) => {
     if (services.includes(item)) {
-      setServices(services.filter((s) => s !== item));
+      if (services.length > 1) {
+        setServices(services.filter((s) => s !== item));
+      }
     } else {
       setServices([...services, item]);
     }
@@ -95,45 +96,44 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-brand-black/95 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
           />
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: 'spring', duration: 0.5 }}
-            className="relative w-full max-w-lg bg-brand-card border border-brand-light/10 p-6 md:p-8 rounded-none text-brand-light z-10 shadow-2xl overflow-y-auto max-h-[90vh]"
+            exit={{ opacity: 0, scale: 0.96, y: 15 }}
+            transition={{ type: 'spring', duration: 0.3 }}
+            className="relative w-full max-w-lg bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl text-gray-900 z-10 shadow-2xl overflow-y-auto max-h-[90vh]"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-brand-gray hover:text-brand-light transition-colors p-2 cursor-pointer"
-              aria-label="Close modal"
-              id="close-modal-btn"
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors p-2 cursor-pointer rounded-lg"
+              aria-label="Закрыть окно"
             >
-              <X size={24} strokeWidth={1.5} />
+              <X size={20} />
             </button>
 
             {!isSubmitted ? (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-brand-red/10 text-brand-red">
-                    <Calculator size={24} strokeWidth={1.5} />
+                  <div className="p-2.5 rounded-lg bg-orange-50 text-brand-red border border-orange-100">
+                    <Calculator size={22} />
                   </div>
                   <div>
-                    <h3 className="text-xl md:text-2xl font-display uppercase tracking-tight text-brand-light">
-                      Рассчитать проект
+                    <h3 className="text-xl font-bold text-gray-950">
+                      Онлайн-расчет сметы
                     </h3>
-                    <p className="text-brand-gray font-mono text-xs mt-1">
-                      Укажите параметры — перезвоним в течение 15 минут
+                    <p className="text-xs text-gray-600 mt-0.5">
+                      Укажите параметры — перезвоним с точной цифрой
                     </p>
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Honeypot anti-spam field */}
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Honeypot field */}
                   <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
                     <input
                       type="text"
@@ -146,13 +146,16 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
                   </div>
 
                   {error && (
-                    <div className="p-3 bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm mb-4">
+                    <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg">
                       {error}
                     </div>
                   )}
+
                   {/* Service Selection */}
                   <div className="space-y-2">
-                    <label className="block font-mono text-xs uppercase text-brand-gray">Выбор решения (можно несколько)</label>
+                    <label className="block text-xs font-semibold text-gray-700">
+                      Что планируете сделать?
+                    </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {[
                         'Натяжные потолки',
@@ -166,15 +169,15 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
                             key={item}
                             type="button"
                             onClick={() => toggleService(item)}
-                            className={`text-left px-4 py-3 text-xs font-mono uppercase border transition-all cursor-pointer ${
+                            className={`text-left px-3.5 py-3 text-xs rounded-lg border transition-all cursor-pointer font-medium ${
                               isSelected
-                                ? 'border-brand-red text-brand-red bg-brand-red/5'
-                                : 'border-brand-light/10 text-brand-gray hover:text-brand-light hover:border-brand-light/30'
+                                ? 'border-brand-red text-brand-red bg-orange-50 font-semibold'
+                                : 'border-gray-200 text-gray-700 hover:border-gray-300 bg-white'
                             }`}
                           >
                             <div className="flex items-center justify-between">
                               <span>{item}</span>
-                              {isSelected && <span className="w-1.5 h-1.5 bg-brand-red rounded-full" />}
+                              {isSelected && <span className="w-2 h-2 bg-brand-red rounded-full" />}
                             </div>
                           </button>
                         );
@@ -183,10 +186,10 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
                   </div>
 
                   {/* Area Slider */}
-                  <div className="space-y-2 pt-2">
-                    <div className="flex justify-between font-mono text-xs uppercase">
-                      <span className="text-brand-gray">Площадь помещения</span>
-                      <span className="text-brand-light font-bold">{area} м²</span>
+                  <div className="space-y-2 pt-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-600 font-medium">Примерная площадь помещения:</span>
+                      <span className="text-gray-950 font-bold">{area} м²</span>
                     </div>
                     <input
                       type="range"
@@ -194,98 +197,91 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
                       max="120"
                       value={area}
                       onChange={(e) => setArea(Number(e.target.value))}
-                      className="w-full accent-brand-red cursor-pointer bg-brand-light/10 h-1 rounded-lg outline-none"
+                      className="w-full accent-brand-red cursor-pointer bg-gray-200 h-2 rounded-lg"
                     />
-                    <div className="flex justify-between font-mono text-[10px] text-brand-gray">
+                    <div className="flex justify-between text-[11px] text-gray-400">
                       <span>5 м²</span>
                       <span>120 м²</span>
                     </div>
                   </div>
 
-                  {/* Lead capture */}
-                  <div className="space-y-4 pt-2">
-                    <div className="grid grid-cols-1 gap-4">
-                      <div>
-                        <label className="block font-mono text-[10px] uppercase text-brand-gray mb-1">Ваше имя</label>
-                        <input
-                          type="text"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          placeholder="Иван"
-                          className="w-full bg-brand-black border border-brand-light/10 px-4 py-3 text-sm text-brand-light focus:border-brand-red focus:outline-none transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <label className="block font-mono text-[10px] uppercase text-brand-gray mb-1">
-                          Телефон <span className="text-brand-red">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={phone}
-                          onChange={handlePhoneChange}
-                          placeholder="+7 (999) 000-00-00"
-                          className="w-full bg-brand-black border border-brand-light/10 px-4 py-3 text-sm text-brand-light focus:border-brand-red focus:outline-none transition-colors"
-                        />
-                      </div>
+                  {/* Contact Fields */}
+                  <div className="space-y-3 pt-1">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
+                        Ваше имя
+                      </label>
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Как к вам обращаться"
+                        className="w-full bg-white border border-gray-300 focus:border-brand-red px-3.5 py-2.5 text-sm text-gray-900 rounded-lg outline-none transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
+                        Телефон <span className="text-brand-red">*</span>
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={phone}
+                        onChange={handlePhoneChange}
+                        placeholder="+7 (999) 000-00-00"
+                        className="w-full bg-white border border-gray-300 focus:border-brand-red px-3.5 py-2.5 text-sm text-gray-900 rounded-lg outline-none transition-colors"
+                      />
                     </div>
                   </div>
 
+                  {/* Privacy Consent */}
                   <PrivacyConsent />
 
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={isSubmitting || !isPhoneValid}
-                    className={`w-full font-mono text-xs uppercase tracking-widest py-4 transition-all font-medium flex items-center justify-center gap-2 cursor-pointer ${
+                    className={`w-full py-3.5 rounded-lg font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
                       isPhoneValid
-                        ? 'bg-brand-red hover:bg-brand-red/90 text-white shadow-[0_0_20px_rgba(255,51,51,0.3)]'
-                        : 'bg-brand-black border border-brand-light/10 text-brand-gray cursor-not-allowed'
+                        ? 'bg-brand-red hover:bg-brand-red-hover text-white hover:shadow-md'
+                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                     }`}
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Отправка заявки...
+                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span>Отправка...</span>
                       </>
                     ) : (
                       <>
-                        <Phone size={14} />
-                        Получить расчёт стоимости
+                        <span>Получить расчет сметы</span>
+                        <ArrowRight size={16} />
                       </>
                     )}
                   </button>
-
-                  <p className="text-[10px] text-brand-gray font-mono text-center">
-                    Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
-                  </p>
                 </form>
               </div>
             ) : (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-8 space-y-6"
-              >
-                <div className="w-16 h-16 bg-brand-red/10 text-brand-red rounded-full flex items-center justify-center mx-auto">
-                  <Check size={32} strokeWidth={1.5} />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-display uppercase tracking-tight text-brand-light">
-                    Заявка принята!
-                  </h3>
-                  <p className="text-brand-gray font-mono text-sm max-w-md mx-auto">
-                    Спасибо, {name || 'уважаемый клиент'}! Наш ведущий технолог свяжется с вами в течение 15 минут для уточнения деталей и подбора оптимальных решений под ваш бюджет.
-                  </p>
+              <div className="py-8 text-center space-y-4">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 mb-2">
+                  <CheckCircle size={28} />
                 </div>
                 <div>
-                  <button
-                    onClick={handleReset}
-                    className="bg-transparent border border-brand-light/20 hover:border-brand-light text-brand-light font-mono text-xs uppercase tracking-wider px-8 py-3 transition-colors cursor-pointer"
-                  >
-                    Закрыть окно
-                  </button>
+                  <h3 className="text-xl font-bold text-gray-950">
+                    Заявка принята!
+                  </h3>
+                  <p className="text-xs text-gray-600 max-w-xs mx-auto mt-2 leading-relaxed">
+                    Мастер перезвонит вам в течение 15 минут с расчетом под ваши параметры ({area} м²).
+                  </p>
                 </div>
-              </motion.div>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="mt-4 px-6 py-2.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  Закрыть
+                </button>
+              </div>
             )}
           </motion.div>
         </div>

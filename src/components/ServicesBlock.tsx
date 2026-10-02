@@ -13,8 +13,8 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
     {
       id: "01",
       title: "Натяжные потолки",
-      subtitle: "Бесшовные системы A-Класса",
-      description: "Идеально ровные матовые, сатиновые или глянцевые полотна премиум-качества. Монтаж без швов и трещин за 1 день.",
+      subtitle: "Матовые, сатиновые и глянцевые полотна",
+      description: "Идеально ровная белая поверхность без швов и трещин. Полотна без запаха, экологический класс А+. Монтаж комнаты за 3–5 часов.",
       icon: Layers,
       specs: [
         { label: "Материал", value: "MSD Premium / Bauf / Teqtum" },
@@ -22,84 +22,73 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
         { label: "Ширина полотна", value: "До 5.5 м без швов" },
         { label: "Срок службы", value: "Гарантия 10 лет" }
       ],
-      features: ["Монтаж без пыли за 1 день", "Идеальная белизна полотна", "Выдерживает до 100л воды/м²"]
+      features: ["Монтаж без пыли за 1 день", "Идеальная белизна полотна", "Выдерживает до 100 л воды на м² при затопе"]
     },
     {
       id: "02",
       title: "Теневой профиль",
-      subtitle: "Архитектурный зазор EuroKRAAB",
-      description: "Современное примыкание EuroKRAAB. Создает визуальный зазор 7 мм, избавляя от резиновых уголков-заглушек.",
+      subtitle: "Система EuroKRAAB без плинтусов и заглушек",
+      description: "Современное примыкание потолка к стене с аккуратным зазором 6–7 мм. Никаких дешевых резиновых заглушек — стильный минималистичный контур.",
       icon: Sliders,
       specs: [
-        { label: "Технология", value: "Бесщелевой теневой зазор" },
-        { label: "Ширина шва", value: "7 мм (идеальная геометрия)" },
-        { label: "Материал", value: "Анодированный алюминий" },
-        { label: "Цвет профиля", value: "Черный муар / Матовый" }
+        { label: "Технология", value: "EuroKRAAB / Lumfer" },
+        { label: "Теневой зазор", value: "6–7 мм ровного контура" },
+        { label: "Материал профиля", value: "Алюминиевый окрашенный" },
+        { label: "Цвет зазора", value: "Глубокий черный матовый" }
       ],
-      features: ["Идеально ровный зазор по всему периметру", "Отсутствие маскировочной ленты", "Эффект парящих стен"]
+      features: ["Идеально ровный зазор по всему периметру", "Удобно клеить обои или красить стены в будущем", "Эффект парящего потолка"]
     },
     {
       id: "03",
       title: "Карнизные решения",
-      subtitle: "Скрытая интеграция и электропривод",
-      description: "Скрытые ниши для штор с интеграцией электрокарниза. Подбираем систему под задачу — от простого карниза до конструкции с местом для подсветки и бесшумными крючками на колёсиках.",
+      subtitle: "Скрытые ниши для штор и электрокарнизы",
+      description: "Эстетичные ниши в потолке, где шторы плавно спускаются прямо с потолка. Возможность установки мягкой подсветки и электропривода.",
       icon: Cpu,
       specs: [
-        { label: "Формируется ниша", value: "да" },
-        { label: "Место для электрокарниза", value: "предусмотрено" },
-        { label: "Минимальный опуск потолка", value: "от 4 см" },
-        { label: "Управление", value: "ручное или электро" }
+        { label: "Конструкция ниши", value: "Скрытый алюминиевый брус" },
+        { label: "Электрокарниз", value: "Поддержка любых моторов" },
+        { label: "Опуск потолка", value: "Минимальный от 4 см" },
+        { label: "Подсветка штор", value: "Теплый / нейтральный LED" }
       ],
-      features: ["Скрытый монтаж без видимых крепежей", "Бесшумный плавный ход штор", "Интеграция с натяжным потолком"]
+      features: ["Никаких видимых крючков и крепежей", "Бесшумные бегунки на роликах", "Стильный интерьер гостиной и спальни"]
     },
     {
       id: "04",
       title: "Световые линии и треки",
-      subtitle: "Магнитные системы и контурный свет",
-      description: "Прогрессивное освещение: встроенные магнитные шинопроводы, световые полосы и линейные рассеиватели.",
+      subtitle: "Магнитные треки и встроенные световые полосы",
+      description: "Современный сценарий освещения: утопленные в потолок магнитные треки 48V со сменными светильниками и яркие световые линии.",
       icon: Eye,
       specs: [
-        { label: "Ширина линий", value: "15 мм / 30 мм / 50 мм" },
-        { label: "Светодиоды", value: "Samsung Premium LED (CRI >90)" },
-        { label: "Безопасность", value: "Низковольтная шина 48V" },
-        { label: "Управление", value: "Диммирование / Сценарии" }
+        { label: "Ширина шинопровода", value: "25 мм / 35 мм" },
+        { label: "Питание шины", value: "Безопасное напряжение 48V" },
+        { label: "Светодиоды", value: "CRI >90 (естественная цветопередача)" },
+        { label: "Управление", value: "Обычный выключатель или диммер" }
       ],
-      features: ["Удобное перемещение светильников", "Основной или декоративный свет", "Стильный футуристичный дизайн"]
+      features: ["Легко переставлять светильники руками", "Служит основным светом в комнате", "Энергоэффективность и долговечность"]
     }
   ];
 
   return (
-    <section id="services" className="relative bg-brand-black pt-20 pb-24 md:pt-28 md:pb-36 overflow-hidden border-t border-brand-light/5">
-      {/* Background Grid & Ambient Glows */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
-      <div className="absolute top-1/4 left-1/10 w-[400px] h-[400px] rounded-full bg-brand-red/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/10 w-[400px] h-[400px] rounded-full bg-brand-red/5 blur-[120px] pointer-events-none" />
-
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+    <section id="services" className="relative bg-white pt-20 pb-24 md:pt-28 md:pb-32 border-t border-gray-200">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
         
         {/* Section Header */}
-        <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
-              <span className="font-mono text-xs text-brand-red uppercase tracking-[0.2em] block">[ НАПРАВЛЕНИЯ ]</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium text-brand-light leading-[1.1] uppercase tracking-tight" id="services-title">
-              Архитектура <br className="hidden sm:inline" />потолков нового уровня
+        <div className="mb-14 md:mb-18 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight mb-4" id="services-title">
+              Виды потолков и конструкций
             </h2>
-          </div>
-          <div className="max-w-md">
-            <p className="text-brand-gray text-xs sm:text-sm font-mono uppercase tracking-widest leading-relaxed border-l border-brand-red/40 pl-4 py-1" id="services-subtitle">
-              Премиальные конструктивные решения и световой дизайн с безукоризненным качеством исполнения.
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+              Подбираем решения под ваш бюджет: от классических белых полотен до теневых систем EuroKRAAB и трекового света.
             </p>
           </div>
         </div>
 
-        {/* Desktop Interactive Layout */}
-        <div className="hidden lg:grid grid-cols-12 gap-12 xl:gap-16 items-start">
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Menu Selector */}
-          <div className="col-span-5 space-y-2">
+          <div className="col-span-5 space-y-3">
             {services.map((service, index) => {
               const Icon = service.icon;
               const isActive = activeIndex === index;
@@ -107,50 +96,37 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                 <div
                   key={service.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`group relative p-6 cursor-pointer border transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
+                  className={`group relative p-5 rounded-xl cursor-pointer border transition-all duration-200 select-none ${
                     isActive 
-                      ? 'bg-brand-card border-brand-light/10 shadow-[0_12px_40px_-15px_rgba(0,0,0,0.5)]' 
-                      : 'bg-transparent border-transparent hover:border-brand-light/5 hover:bg-brand-card/20'
+                      ? 'bg-orange-50/70 border-brand-red shadow-sm' 
+                      : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50/80'
                   }`}
                 >
-                  {/* Active Indicator Bar */}
-                  {isActive && (
-                    <motion.div 
-                      layoutId="activeServiceIndicator"
-                      className="absolute left-0 top-0 bottom-0 w-[3px] bg-brand-red"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                    />
-                  )}
-
-                  <div className="flex items-start gap-5">
-                    {/* Index Number */}
-                    <span className={`font-mono text-xs tracking-widest font-bold transition-colors duration-300 ${
-                      isActive ? 'text-brand-red' : 'text-brand-gray/60 group-hover:text-brand-red/70'
+                  <div className="flex items-start gap-4">
+                    {/* Index */}
+                    <span className={`font-mono text-xs font-bold leading-6 transition-colors ${
+                      isActive ? 'text-brand-red' : 'text-gray-400 group-hover:text-gray-700'
                     }`}>
                       {service.id}
                     </span>
 
                     {/* Content */}
-                    <div className="space-y-2 flex-1">
-                      <div className="flex items-center gap-3">
-                        <Icon size={16} className={`transition-colors duration-300 ${
-                          isActive ? 'text-brand-red' : 'text-brand-gray group-hover:text-brand-light'
-                        }`} />
-                        <h3 className={`font-display text-lg uppercase tracking-tight transition-colors duration-300 ${
-                          isActive ? 'text-white font-medium' : 'text-brand-gray/80 group-hover:text-brand-light'
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2.5">
+                        <Icon size={18} className={isActive ? 'text-brand-red' : 'text-gray-500 group-hover:text-gray-900'} />
+                        <h3 className={`text-base font-bold transition-colors ${
+                          isActive ? 'text-gray-950' : 'text-gray-800 group-hover:text-gray-950'
                         }`}>
                           {service.title}
                         </h3>
                       </div>
-                      <p className={`text-xs leading-relaxed transition-all duration-500 ${
-                        isActive ? 'text-brand-gray opacity-100' : 'text-brand-gray/40 group-hover:text-brand-gray/60'
-                      }`}>
+                      <p className="text-xs text-gray-600 mt-1 leading-snug">
                         {service.subtitle}
                       </p>
                     </div>
 
-                    <ChevronRight size={16} className={`mt-1 transition-all duration-300 transform ${
-                      isActive ? 'text-brand-red translate-x-1' : 'text-brand-gray/30 group-hover:text-brand-light/50 group-hover:translate-x-0.5'
+                    <ChevronRight size={18} className={`mt-1 transition-transform ${
+                      isActive ? 'text-brand-red translate-x-1' : 'text-gray-400 group-hover:translate-x-0.5'
                     }`} />
                   </div>
                 </div>
@@ -163,73 +139,61 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-brand-card border border-brand-light/10 p-8 xl:p-12 relative overflow-hidden flex flex-col justify-between min-h-[500px] shadow-2xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="bg-white border border-gray-200 p-8 xl:p-10 rounded-2xl shadow-md flex flex-col justify-between min-h-[460px]"
               >
-                {/* Tech Grid Background Deco */}
-                <div className="absolute top-0 right-0 w-48 h-48 border-b border-l border-brand-light/5 pointer-events-none font-mono text-[8px] text-brand-gray/20 p-2 flex flex-col justify-between">
-                  <div className="flex justify-between">
-                    <span>[ DECO_GRID_01 ]</span>
-                    <span>SEC_0{activeIndex + 1}</span>
-                  </div>
-                  <div className="text-right">A-CLASS STUDIO</div>
-                </div>
-
                 <div>
-                  {/* Header info */}
-                  <div className="space-y-3 mb-8">
-                    <span className="font-mono text-[10px] text-brand-red uppercase tracking-[0.2em] block">
-                      // {services[activeIndex].subtitle}
+                  <div className="mb-6">
+                    <span className="text-xs font-semibold text-brand-red uppercase tracking-wider block mb-1">
+                      {services[activeIndex].subtitle}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-display uppercase tracking-tight text-brand-light font-medium">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight mb-3">
                       {services[activeIndex].title}
                     </h3>
-                    <p className="text-brand-gray text-sm leading-relaxed max-w-xl">
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                       {services[activeIndex].description}
                     </p>
                   </div>
 
-                  {/* Technical Specifications Block */}
-                  <div className="grid grid-cols-2 gap-x-8 gap-y-4 pt-6 border-t border-brand-light/5 mb-8">
+                  {/* Tech Specs */}
+                  <div className="grid grid-cols-2 gap-4 py-5 border-t border-b border-gray-200 mb-6">
                     {services[activeIndex].specs.map((spec, sIdx) => (
-                      <div key={sIdx} className="space-y-1">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-brand-gray/60 block">
+                      <div key={sIdx} className="space-y-0.5">
+                        <span className="text-xs text-gray-500 block">
                           {spec.label}
                         </span>
-                        <span className="font-mono text-xs sm:text-sm text-brand-light font-medium block">
+                        <span className="text-sm font-bold text-gray-900 block">
                           {spec.value}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  {/* High Quality Features List */}
-                  <div className="space-y-2.5 pt-6 border-t border-brand-light/5">
-                    <span className="font-mono text-[9px] uppercase tracking-wider text-brand-gray/60 block mb-3">
-                      Особенности технологии:
+                  {/* Features List */}
+                  <div className="space-y-2 mb-8">
+                    <span className="text-xs font-semibold text-gray-600 block mb-2">
+                      Преимущества технологии:
                     </span>
                     {services[activeIndex].features.map((feature, fIdx) => (
-                      <div key={fIdx} className="flex items-center gap-3 text-xs text-brand-light">
-                        <ShieldCheck size={14} className="text-brand-red shrink-0" />
-                        <span className="font-mono uppercase tracking-wide text-[10px] text-brand-gray-light">
-                          {feature}
-                        </span>
+                      <div key={fIdx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-800">
+                        <ShieldCheck size={16} className="text-emerald-600 shrink-0" />
+                        <span>{feature}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Primary CTA Red Button */}
-                <div className="mt-10 pt-6 border-t border-brand-light/5">
+                {/* Primary CTA */}
+                <div>
                   <button
                     onClick={() => onOpenCalculator(services[activeIndex].title)}
-                    className="group bg-brand-red hover:bg-brand-red/90 text-white font-mono text-xs uppercase tracking-[0.15em] py-4 px-8 transition-all duration-300 font-medium flex items-center justify-center gap-3 cursor-pointer shadow-lg shadow-brand-red/10"
+                    className="w-full sm:w-auto bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group"
                   >
-                    Запустить расчет сметы
-                    <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+                    <span>Рассчитать стоимость</span>
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </motion.div>
@@ -237,60 +201,41 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
           </div>
         </div>
 
-        {/* Mobile / Tablet Responsive Showcase */}
-        <div className="lg:hidden space-y-6">
+        {/* Mobile Showcase */}
+        <div className="lg:hidden space-y-4">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.div
+              <div
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-brand-card border border-brand-light/10 p-6 flex flex-col justify-between"
+                className="bg-white border border-gray-200 p-6 rounded-xl shadow-xs"
               >
-                <div>
-                  {/* Mobile header */}
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <Icon size={14} className="text-brand-red" />
-                        <span className="font-mono text-[9px] text-brand-red uppercase tracking-widest">// {service.id}</span>
-                      </div>
-                      <h3 className="font-display text-lg uppercase tracking-tight text-white font-medium">
-                        {service.title}
-                      </h3>
+                <div className="flex items-center gap-2.5 mb-2">
+                  <Icon size={18} className="text-brand-red" />
+                  <h3 className="text-lg font-bold text-gray-950">
+                    {service.title}
+                  </h3>
+                </div>
+
+                <p className="text-xs text-gray-500 mb-3">{service.subtitle}</p>
+                <p className="text-sm text-gray-700 leading-relaxed mb-4">{service.description}</p>
+
+                <div className="grid grid-cols-2 gap-3 py-3 border-t border-b border-gray-200 mb-4">
+                  {service.specs.slice(0, 2).map((spec, sIdx) => (
+                    <div key={sIdx}>
+                      <span className="text-[11px] text-gray-500 block">{spec.label}</span>
+                      <span className="text-xs font-bold text-gray-900 block">{spec.value}</span>
                     </div>
-                  </div>
-
-                  <p className="text-brand-gray text-xs sm:text-sm leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Mobile Tech Specs */}
-                  <div className="grid grid-cols-2 gap-4 py-4 border-t border-b border-brand-light/5 mb-6">
-                    {service.specs.map((spec, sIdx) => (
-                      <div key={sIdx} className="space-y-0.5">
-                        <span className="font-mono text-[8px] uppercase tracking-wider text-brand-gray/60 block">
-                          {spec.label}
-                        </span>
-                        <span className="font-mono text-[10px] text-brand-light block leading-snug">
-                          {spec.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
 
                 <button
                   onClick={() => onOpenCalculator(service.title)}
-                  className="w-full bg-brand-red hover:bg-brand-red/95 text-white font-mono text-[10px] uppercase tracking-widest py-3.5 px-4 transition-all duration-300 font-medium flex items-center justify-center gap-2"
+                  className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-xs font-semibold py-3 rounded-lg transition-colors"
                 >
-                  Узнать стоимость
-                  <ArrowRight size={12} />
+                  Рассчитать стоимость
                 </button>
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -299,4 +244,3 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
     </section>
   );
 }
-
