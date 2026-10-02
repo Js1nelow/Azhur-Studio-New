@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTransition } from '../../contexts/TransitionContext';
+import { Logo } from '../Logo';
 
 interface NavbarProps {
   onOpenCalculator: (service?: string) => void;
@@ -82,9 +83,8 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
           <Link 
             to="/#hero" 
             onClick={(e) => handleLinkClick(e, '#hero')} 
-            className="font-sans font-extrabold text-2xl uppercase tracking-wider text-brand-light hover:text-brand-red transition-colors duration-300 select-none flex items-center gap-1.5"
           >
-            АЖУР<span className="w-2 h-2 rounded-full bg-brand-red inline-block mb-1"></span>
+            <Logo variant="gap" />
           </Link>
         </div>
 

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ShieldCheck, Sparkles, Clock, Calculator, MessageSquare, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Calculator, MessageSquare, ArrowRight } from 'lucide-react';
 import { reachMetrikaGoal } from './YandexMetrika';
 
 interface HeroBlockProps {
@@ -9,23 +9,23 @@ interface HeroBlockProps {
 export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
   const benefits = [
     {
-      icon: <Clock className="w-5 h-5 text-brand-red shrink-0" />,
-      title: "Монтаж за 1 день",
-      desc: "От 4 часов на комнату без срыва сроков",
+      metric: "1 день",
+      title: "Монтаж комнаты от 4 часов",
+      desc: "Без срыва сроков и лишней суеты",
     },
     {
-      icon: <Sparkles className="w-5 h-5 text-brand-red shrink-0" />,
+      metric: "100%",
       title: "Чистота без пыли",
-      desc: "Перфораторы с пылеудалением — обои и полы чистые",
+      desc: "Перфораторы с пылеудалением — стены чистые",
     },
     {
-      icon: <ShieldCheck className="w-5 h-5 text-brand-red shrink-0" />,
+      metric: "0 ₽",
       title: "Фиксированная смета",
       desc: "Цена в договоре не вырастет после монтажа",
     },
     {
-      icon: <CheckCircle2 className="w-5 h-5 text-brand-red shrink-0" />,
-      title: "10 лет гарантии",
+      metric: "10 лет",
+      title: "Официальная гарантия",
       desc: "Сертифицированные полотна без запаха (класс А+)",
     },
   ];
@@ -83,7 +83,7 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               </div>
             </div>
 
-            {/* 4 Benefit Cards Grid */}
+            {/* 4 Metric Badges (Zero generic icons/emojis, 100% facts & typography) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,14 +93,14 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               {benefits.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-3 p-3.5 rounded-lg bg-gray-50 border border-gray-200 hover:border-gray-300 transition-colors"
+                  className="flex items-center gap-3.5 p-3.5 rounded-xl bg-gray-50 border border-gray-200/90 hover:border-gray-300 transition-colors"
                 >
-                  <div className="p-1.5 rounded bg-white border border-gray-200 shrink-0">
-                    {item.icon}
+                  <div className="font-extrabold text-brand-red text-sm font-mono tracking-tight shrink-0 min-w-[54px]">
+                    {item.metric}
                   </div>
-                  <div>
-                    <div className="text-sm font-bold text-gray-950 leading-snug">{item.title}</div>
-                    <div className="text-xs text-gray-600 mt-0.5 leading-snug">{item.desc}</div>
+                  <div className="border-l border-gray-200 pl-3 min-w-0">
+                    <div className="text-xs font-bold text-gray-950 leading-snug truncate">{item.title}</div>
+                    <div className="text-[11px] text-gray-600 mt-0.5 leading-snug truncate">{item.desc}</div>
                   </div>
                 </div>
               ))}
@@ -138,26 +138,27 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-full max-w-[440px]"
+              transition={{ duration: 0.5 }}
+              className="relative w-full max-w-[420px]"
             >
               <div className="relative rounded-xl overflow-hidden border border-gray-300 bg-white shadow-lg">
                 <img
                   src="/azhur/photo/hero.webp"
-                  alt="Олег Мисягин — ведущий мастер студии Ажур"
-                  className="w-full aspect-[3/4] object-cover"
+                  alt="Олег Мисягин — ведущий специалист"
+                  className="w-full aspect-[4/5] object-cover object-top"
+                  loading="eager"
                 />
-
-                {/* Trust Badge at bottom of photo */}
+                
+                {/* Clean master badge */}
                 <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md border border-gray-200 p-4 rounded-lg shadow-md">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-base font-bold text-gray-950">Олег Мисягин</span>
-                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-orange-100 text-orange-800">
-                      17 лет опыта
+                    <span className="font-extrabold text-gray-950 text-base">Олег Мисягин</span>
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-orange-50 text-brand-red border border-orange-200 uppercase tracking-wider">
+                      Опыт 17 лет
                     </span>
                   </div>
-                  <p className="text-xs text-gray-700 leading-snug">
-                    Основатель студии «Ажур». Лично выезжает на замеры и отвечает за результат каждого объекта по договору.
+                  <p className="text-xs text-gray-600 leading-snug">
+                    Ведущий мастер студии «Ажур». Лично выезжает на замеры и отвечает за каждый объект по договору.
                   </p>
                 </div>
               </div>

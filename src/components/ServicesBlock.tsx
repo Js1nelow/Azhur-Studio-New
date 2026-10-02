@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Cpu, Sliders, Layers, Eye, ShieldCheck, ChevronRight } from 'lucide-react';
+import { ChevronRight, ArrowRight, Check } from 'lucide-react';
 
 interface ServicesBlockProps {
-  onOpenCalculator: (service: string) => void;
+  onOpenCalculator: (service?: string) => void;
 }
 
 export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
@@ -15,7 +15,6 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
       title: "Натяжные потолки",
       subtitle: "Матовые, сатиновые и глянцевые полотна",
       description: "Идеально ровная белая поверхность без швов и трещин. Полотна без запаха, экологический класс А+. Монтаж комнаты за 3–5 часов.",
-      icon: Layers,
       specs: [
         { label: "Материал", value: "MSD Premium / Bauf / Teqtum" },
         { label: "Экологичность", value: "Класс А+ (без запаха)" },
@@ -29,7 +28,6 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
       title: "Теневой профиль",
       subtitle: "Система EuroKRAAB без плинтусов и заглушек",
       description: "Современное примыкание потолка к стене с аккуратным зазором 6–7 мм. Никаких дешевых резиновых заглушек — стильный минималистичный контур.",
-      icon: Sliders,
       specs: [
         { label: "Технология", value: "EuroKRAAB / Lumfer" },
         { label: "Теневой зазор", value: "6–7 мм ровного контура" },
@@ -43,7 +41,6 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
       title: "Карнизные решения",
       subtitle: "Скрытые ниши для штор и электрокарнизы",
       description: "Эстетичные ниши в потолке, где шторы плавно спускаются прямо с потолка. Возможность установки мягкой подсветки и электропривода.",
-      icon: Cpu,
       specs: [
         { label: "Конструкция ниши", value: "Скрытый алюминиевый брус" },
         { label: "Электрокарниз", value: "Поддержка любых моторов" },
@@ -57,7 +54,6 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
       title: "Световые линии и треки",
       subtitle: "Магнитные треки и встроенные световые полосы",
       description: "Современный сценарий освещения: утопленные в потолок магнитные треки 48V со сменными светильниками и яркие световые линии.",
-      icon: Eye,
       specs: [
         { label: "Ширина шинопровода", value: "25 мм / 35 мм" },
         { label: "Питание шины", value: "Безопасное напряжение 48V" },
@@ -90,7 +86,6 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
           {/* Left Column: Menu Selector */}
           <div className="col-span-5 space-y-3">
             {services.map((service, index) => {
-              const Icon = service.icon;
               const isActive = activeIndex === index;
               return (
                 <div
@@ -112,14 +107,11 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
 
                     {/* Content */}
                     <div className="flex-1">
-                      <div className="flex items-center gap-2.5">
-                        <Icon size={18} className={isActive ? 'text-brand-red' : 'text-gray-500 group-hover:text-gray-900'} />
-                        <h3 className={`text-base font-bold transition-colors ${
-                          isActive ? 'text-gray-950' : 'text-gray-800 group-hover:text-gray-950'
-                        }`}>
-                          {service.title}
-                        </h3>
-                      </div>
+                      <h3 className={`text-base font-bold transition-colors ${
+                        isActive ? 'text-gray-950' : 'text-gray-800 group-hover:text-gray-950'
+                      }`}>
+                        {service.title}
+                      </h3>
                       <p className="text-xs text-gray-600 mt-1 leading-snug">
                         {service.subtitle}
                       </p>
@@ -173,13 +165,15 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                   </div>
 
                   {/* Features List */}
-                  <div className="space-y-2 mb-8">
+                  <div className="space-y-2.5 mb-8">
                     <span className="text-xs font-semibold text-gray-600 block mb-2">
                       Преимущества технологии:
                     </span>
                     {services[activeIndex].features.map((feature, fIdx) => (
                       <div key={fIdx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-800">
-                        <ShieldCheck size={16} className="text-emerald-600 shrink-0" />
+                        <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                          <Check size={11} strokeWidth={3} />
+                        </div>
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -203,41 +197,41 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
 
         {/* Mobile Showcase */}
         <div className="lg:hidden space-y-4">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.id}
-                className="bg-white border border-gray-200 p-6 rounded-xl shadow-xs"
-              >
-                <div className="flex items-center gap-2.5 mb-2">
-                  <Icon size={18} className="text-brand-red" />
-                  <h3 className="text-lg font-bold text-gray-950">
-                    {service.title}
-                  </h3>
-                </div>
-
-                <p className="text-xs text-gray-500 mb-3">{service.subtitle}</p>
-                <p className="text-sm text-gray-700 leading-relaxed mb-4">{service.description}</p>
-
-                <div className="grid grid-cols-2 gap-3 py-3 border-t border-b border-gray-200 mb-4">
-                  {service.specs.slice(0, 2).map((spec, sIdx) => (
-                    <div key={sIdx}>
-                      <span className="text-[11px] text-gray-500 block">{spec.label}</span>
-                      <span className="text-xs font-bold text-gray-900 block">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <button
-                  onClick={() => onOpenCalculator(service.title)}
-                  className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-xs font-semibold py-3 rounded-lg transition-colors"
-                >
-                  Рассчитать стоимость
-                </button>
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="bg-white border border-gray-200 p-6 rounded-xl shadow-xs"
+            >
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="font-mono text-xs font-bold text-brand-red">{service.id}</span>
+                <h3 className="text-lg font-bold text-gray-950">
+                  {service.title}
+                </h3>
               </div>
-            );
-          })}
+
+              <p className="text-xs text-gray-500 mb-3">{service.subtitle}</p>
+              <p className="text-xs text-gray-700 leading-relaxed mb-4">
+                {service.description}
+              </p>
+
+              <div className="space-y-1.5 border-t border-b border-gray-200 py-3 mb-4">
+                {service.specs.slice(0, 2).map((s, idx) => (
+                  <div key={idx} className="flex justify-between text-xs">
+                    <span className="text-gray-500">{s.label}:</span>
+                    <span className="font-semibold text-gray-900">{s.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={() => onOpenCalculator(service.title)}
+                className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-xs font-semibold py-3 rounded-lg flex items-center justify-center gap-2"
+              >
+                <span>Узнать цену</span>
+                <ArrowRight size={14} />
+              </button>
+            </div>
+          ))}
         </div>
 
       </div>

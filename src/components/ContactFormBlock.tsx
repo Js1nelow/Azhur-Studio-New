@@ -89,12 +89,10 @@ export function ContactFormBlock() {
             </div>
 
             {/* Benefit list */}
-            <div className="space-y-4 pt-6 border-t border-gray-200">
+            <div className="space-y-3 pt-6 border-t border-gray-200">
               {features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-orange-50 border border-orange-100">
-                    {feature.icon}
-                  </div>
+                  <span className="text-brand-red font-bold text-sm shrink-0">✓</span>
                   <span className="text-sm font-semibold text-gray-900">
                     {feature.text}
                   </span>

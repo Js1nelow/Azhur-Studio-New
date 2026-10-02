@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { Logo } from '../Logo';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,9 +11,7 @@ export function Footer() {
           
           {/* Column 1: Brand */}
           <div className="md:col-span-2 space-y-3">
-            <span className="font-extrabold tracking-tight text-2xl text-gray-950 block">
-              АЖУР<span className="text-brand-red">.</span>
-            </span>
+            <Logo variant="gap" />
             <p className="text-xs sm:text-sm text-gray-600 max-w-sm leading-relaxed">
               Монтаж натяжных потолков в Москве и Московской области. Без пыли, с гарантией 10 лет и фиксированной сметой в договоре.
             </p>
