@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Calculator, MessageSquare, ArrowRight } from 'lucide-react';
+import { Calculator, MessageSquare } from 'lucide-react';
 import { reachMetrikaGoal } from './YandexMetrika';
 
 interface HeroBlockProps {
@@ -7,27 +7,11 @@ interface HeroBlockProps {
 }
 
 export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
-  const benefits = [
-    {
-      metric: "1 день",
-      title: "Монтаж комнаты от 4 часов",
-      desc: "Без срыва сроков и лишней суеты",
-    },
-    {
-      metric: "100%",
-      title: "Чистота без пыли",
-      desc: "Перфораторы с пылеудалением — стены чистые",
-    },
-    {
-      metric: "0 ₽",
-      title: "Фиксированная смета",
-      desc: "Цена в договоре не вырастет после монтажа",
-    },
-    {
-      metric: "10 лет",
-      title: "Официальная гарантия",
-      desc: "Сертифицированные полотна без запаха (класс А+)",
-    },
+  const trustPoints = [
+    "Монтаж от 4 часов без пыли",
+    "Гарантия 10 лет по договору",
+    "Фиксированная смета без доплат",
+    "Экологичные полотна без запаха"
   ];
 
   const handleWhatsAppClick = () => {
@@ -58,13 +42,13 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mb-8 font-normal"
+              className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mb-6 font-normal"
             >
               Фиксируем точную смету в договоре до начала работ. Никаких доплат после монтажа. Безопасные полимерные баллоны, полотна без запаха и аккуратная работа без пыли.
             </motion.p>
 
             {/* Mobile-Only Master Photo */}
-            <div className="block md:hidden mb-8">
+            <div className="block md:hidden mb-6">
               <div className="relative rounded-xl overflow-hidden border border-gray-300 shadow-md bg-white">
                 <img
                   src="/azhur/photo/hero.webp"
@@ -83,30 +67,22 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               </div>
             </div>
 
-            {/* 4 Metric Badges (Zero generic icons/emojis, 100% facts & typography) */}
+            {/* Clean Trust Strip (No bulky cards, no orange number tags) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 max-w-2xl"
+              className="flex flex-wrap items-center gap-x-5 gap-y-2.5 mb-8 text-xs sm:text-sm text-gray-700"
             >
-              {benefits.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-3.5 p-3.5 rounded-xl bg-gray-50 border border-gray-200/90 hover:border-gray-300 transition-colors"
-                >
-                  <div className="font-extrabold text-brand-red text-sm font-mono tracking-tight shrink-0 min-w-[54px]">
-                    {item.metric}
-                  </div>
-                  <div className="border-l border-gray-200 pl-3 min-w-0">
-                    <div className="text-xs font-bold text-gray-950 leading-snug truncate">{item.title}</div>
-                    <div className="text-[11px] text-gray-600 mt-0.5 leading-snug truncate">{item.desc}</div>
-                  </div>
+              {trustPoints.map((point, idx) => (
+                <div key={idx} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
+                  <span className="font-medium">{point}</span>
                 </div>
               ))}
             </motion.div>
 
-            {/* CTA Action Buttons */}
+            {/* CTA Action Buttons: Perfectly aligned, equal height (h-14), single line */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -114,17 +90,18 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 max-w-xl"
             >
               <button
+                type="button"
                 onClick={() => onOpenCalculator('Натяжные потолки')}
-                className="flex-1 bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm sm:text-base px-6 py-4 rounded-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                className="flex-1 h-14 bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm sm:text-base px-6 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
               >
                 <Calculator className="w-5 h-5 shrink-0" />
-                <span>Рассчитать смету онлайн</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>Рассчитать смету</span>
               </button>
 
               <button
+                type="button"
                 onClick={handleWhatsAppClick}
-                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm sm:text-base px-6 py-4 rounded-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="flex-1 h-14 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm sm:text-base px-6 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
               >
                 <MessageSquare className="w-5 h-5 shrink-0" />
                 <span>Написать в WhatsApp</span>
