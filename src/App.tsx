@@ -6,6 +6,10 @@ import { CostModal } from './components/CostModal';
 import { Home } from './pages/Home';
 import { Partners } from './pages/Partners';
 import { TransitionProvider } from './contexts/TransitionContext';
+import { YandexMetrika } from './components/YandexMetrika';
+import { CookieBanner } from './components/CookieBanner';
+import { Privacy } from './pages/Privacy';
+import { FloatingContactWidget } from './components/FloatingContactWidget';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,6 +26,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <YandexMetrika />
       <TransitionProvider>
         <div className="min-h-screen bg-brand-black text-brand-light selection:bg-brand-red selection:text-white overflow-x-hidden">
           {/* Navigation Bar */}
@@ -30,6 +35,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home onOpenCalculator={handleOpenCalculator} />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/privacy/" element={<Privacy />} />
           </Routes>
           
           {/* Footer Section */}
@@ -41,6 +47,9 @@ export default function App() {
             onClose={handleCloseCalculator} 
             selectedService={selectedService} 
           />
+          <CookieBanner />
+          {/* Floating Contact Widget — always on top */}
+          <FloatingContactWidget />
         </div>
       </TransitionProvider>
     </BrowserRouter>

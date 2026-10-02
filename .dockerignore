@@ -4,3 +4,11 @@ dist
 .git
 .gitignore
 README.md
+test_*
+test-*
+test.*
+get_*
+test-deploy
+*.log
+screenshot.png
+new image azhur

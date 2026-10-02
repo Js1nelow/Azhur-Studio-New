@@ -32,6 +32,10 @@ COPY --from=builder /app/dist ./dist
 # Устанавливаем production окружение
 ENV NODE_ENV=production
 
+# Создаем непривилегированного пользователя для безопасности
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+
 # Указываем порт (в server.ts жестко задан 3000)
 EXPOSE 3000
 

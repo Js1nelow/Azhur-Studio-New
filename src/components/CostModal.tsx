@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Check, Calculator, Phone } from 'lucide-react';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { reachMetrikaGoal } from './YandexMetrika';
+import { PrivacyConsent } from './PrivacyConsent';
+import { usePhoneInput } from '../hooks/usePhoneInput';
 
 interface CostModalProps {
   isOpen: boolean;
@@ -10,11 +12,11 @@ interface CostModalProps {
 }
 
 export function CostModal({ isOpen, onClose, selectedService = 'Натяжные потолки' }: CostModalProps) {
-  const { executeRecaptcha } = useGoogleReCaptcha();
   const [services, setServices] = useState<string[]>([selectedService]);
   const [area, setArea] = useState(25);
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const { phone, handlePhoneChange, isPhoneValid, resetPhone } = usePhoneInput();
+  const [honeypotValue, setHoneypotValue] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,62 +36,15 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
     }
   };
 
-  const isPhoneValid = phone.replace(/\D/g, '').length >= 11;
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
-    
-    if (!input) {
-      setPhone('');
-      return;
-    }
-
-    let numbers = input.replace(/\D/g, '');
-    
-    if (!numbers) {
-      if (phone && input.length < phone.length) {
-        setPhone('');
-      } else {
-        setPhone('+7');
-      }
-      return;
-    }
-
-    if (['7', '8', '9'].includes(numbers[0])) {
-      if (numbers[0] === '9') {
-        numbers = '7' + numbers;
-      } else if (numbers[0] === '8') {
-        numbers = '7' + numbers.substring(1);
-      }
-
-      let formatted = '+7';
-      if (numbers.length > 1) formatted += ' (' + numbers.substring(1, 4);
-      if (numbers.length >= 5) formatted += ') ' + numbers.substring(4, 7);
-      if (numbers.length >= 8) formatted += '-' + numbers.substring(7, 9);
-      if (numbers.length >= 10) formatted += '-' + numbers.substring(9, 11);
-      
-      setPhone(formatted);
-    } else {
-      setPhone('+' + numbers.substring(0, 15));
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phone) return;
+    if (honeypotValue) return;
 
     setIsSubmitting(true);
     setError(null);
     
     try {
-      if (!executeRecaptcha) {
-        setError('Защита от спама еще загружается. Пожалуйста, подождите пару секунд и попробуйте снова.');
-        setIsSubmitting(false);
-        return;
-      }
-      
-      const recaptchaToken = await executeRecaptcha('cost_calculator');
-      
       const response = await fetch('/api/send-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -97,14 +52,16 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
           name, 
           phone, 
           source: 'Модальное окно расчёта',
-          details: `Интересует: ${services.join(', ')}. Площадь: ${area} м²`,
-          recaptchaToken
+          details: `Интересует: ${services.join(', ')}. Площадь: ${area} м²`
         })
       });
       
       const data = await response.json().catch(() => null);
 
       if (response.ok && data?.success) {
+        reachMetrikaGoal('lead_form_success');
+        reachMetrikaGoal('lead_submit');
+        reachMetrikaGoal('lead_calculator');
         setIsSubmitted(true);
       } else {
         const errorMsg = data?.error || 'Не удалось отправить заявку. Попробуйте позже.';
@@ -121,7 +78,8 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
 
   const handleReset = () => {
     setName('');
-    setPhone('');
+    resetPhone();
+    setHoneypotValue('');
     setIsSubmitted(false);
     setError(null);
     onClose();
@@ -175,6 +133,18 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot anti-spam field */}
+                  <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+                    <input
+                      type="text"
+                      name="user_website_check"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypotValue}
+                      onChange={(e) => setHoneypotValue(e.target.value)}
+                    />
+                  </div>
+
                   {error && (
                     <div className="p-3 bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm mb-4">
                       {error}
@@ -260,6 +230,8 @@ export function CostModal({ isOpen, onClose, selectedService = 'Натяжные
                       </div>
                     </div>
                   </div>
+
+                  <PrivacyConsent />
 
                   <button
                     type="submit"

@@ -76,7 +76,7 @@ export function Footer() {
             © {currentYear} Ажур Студия. Все права защищены.
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-brand-light transition-colors">Политика конфиденциальности</a>
+            <a href="/privacy/" className="hover:text-brand-light transition-colors">Политика конфиденциальности</a>
           </div>
         </div>
 
