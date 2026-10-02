@@ -74,39 +74,39 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
     <motion.header 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 hairline-b bg-brand-black/80 backdrop-blur-md"
+      className="fixed top-0 left-0 right-0 z-50 hairline-b bg-white/95 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
     >
       <div className="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between w-full">
-        {/* Left Side: Logo (Serif style, as in mockup screenshot) */}
+        {/* Left Side: Logo */}
         <div className="flex items-center">
           <Link 
             to="/#hero" 
             onClick={(e) => handleLinkClick(e, '#hero')} 
-            className="font-serif font-bold text-2xl uppercase tracking-[0.08em] text-white hover:text-brand-red transition-colors duration-300 select-none"
+            className="font-sans font-extrabold text-2xl uppercase tracking-wider text-brand-light hover:text-brand-red transition-colors duration-300 select-none flex items-center gap-1.5"
           >
-            АЖУР
+            АЖУР<span className="w-2 h-2 rounded-full bg-brand-red inline-block mb-1"></span>
           </Link>
         </div>
 
         {/* Right Side: Desktop Nav links & Estimate CTAs */}
         <div className="hidden md:flex items-center justify-center">
-          <nav className="flex items-center gap-5 lg:gap-7 font-mono text-xs uppercase tracking-[0.12em]">
+          <nav className="flex items-center gap-5 lg:gap-7 text-xs uppercase tracking-wider">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={`/${link.href}`}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className={`transition-colors duration-300 relative py-1.5 font-semibold ${
+                className={`transition-colors duration-200 relative py-1.5 font-medium ${
                   activeSection === link.id
-                    ? 'text-brand-red'
-                    : 'text-brand-light/80 hover:text-white'
+                    ? 'text-brand-red font-semibold'
+                    : 'text-brand-gray hover:text-brand-light'
                 }`}
               >
                 {link.label}
                 {activeSection === link.id && (
                   <motion.span
                     layoutId="activeIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-red"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-red rounded-full"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -120,7 +120,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
           {/* Partners Button */}
           <button
             onClick={() => navigateWithTransition('/partners', 'ПАРТНЕРЫ')}
-            className="hidden lg:block border border-brand-light/30 hover:border-brand-light text-brand-light px-5 py-2.5 font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer font-bold"
+            className="hidden lg:block border border-gray-300 hover:border-gray-900 text-brand-light px-4 py-2 text-xs uppercase tracking-wider transition-all cursor-pointer font-medium rounded-lg"
           >
             Партнёрам
           </button>
@@ -128,7 +128,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
           {/* Calculate Button (Only visible on lg+) */}
           <button
             onClick={() => onOpenCalculator()}
-            className="hidden lg:block bg-brand-red hover:bg-brand-red/90 text-white px-5 py-2.5 font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer font-bold"
+            className="hidden lg:block bg-brand-red hover:bg-brand-red/90 text-white px-5 py-2.5 text-xs uppercase tracking-wider transition-all cursor-pointer font-semibold rounded-lg shadow-sm hover:shadow-md"
           >
             Рассчитать смету
           </button>

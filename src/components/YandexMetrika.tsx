@@ -30,10 +30,13 @@ export function YandexMetrika() {
   useEffect(() => {
     if (!hasConsent) return;
     if (!window.ym) {
-      window.ym = function (...args: unknown[]) {
-        (window.ym as typeof window.ym & { a?: unknown[] }).a ||= [];
-        (window.ym as typeof window.ym & { a: unknown[] }).a.push(args);
+      const ymFunc = function (...args: unknown[]) {
+        const fn = ymFunc as unknown as { a: unknown[] };
+        fn.a = fn.a || [];
+        fn.a.push(args);
       };
+      (ymFunc as unknown as { a: unknown[] }).a = [];
+      window.ym = ymFunc as unknown as Window['ym'];
 
       const script = document.createElement('script');
       script.async = true;

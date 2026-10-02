@@ -3,26 +3,20 @@
 
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-display: "Unbounded", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", Georgia, serif;
 
-  --color-brand-black: #0A0A0B;
-  --color-brand-dark: #121212;
-  --color-brand-card: #161617;
-  --color-brand-gray: #8F8F93;
-  --color-brand-light: #E5E5E5;
-  --color-brand-red: #8B0000;
-  --color-brand-red-hover: #5A0000;
+  --color-brand-black: #FFFFFF;
+  --color-brand-dark: #F9FAFB;
+  --color-brand-card: #F3F4F6;
+  --color-brand-gray: #4B5563;
+  --color-brand-light: #111827;
+  --color-brand-red: #E05A2B;
+  --color-brand-red-hover: #C2410C;
 }
 
 @layer base {
-  :root.light {
-    --color-brand-black: #F5F5F7;
-    --color-brand-card: #FFFFFF;
-    --color-brand-gray: #6E6E73;
-    --color-brand-light: #111111;
-  }
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
@@ -34,7 +28,7 @@
     selection-color: white;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display uppercase tracking-tighter;
+    @apply font-sans font-bold tracking-tight text-brand-light;
     overflow-wrap: break-word;
   }
 }
