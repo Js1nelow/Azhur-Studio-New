@@ -94,8 +94,11 @@ export function ReviewsBlock() {
   };
 
   return (
-    <section id="reviews" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+    <section id="reviews" className="relative bg-[#FAF9F6] py-20 md:py-28 border-t border-stone-200/80 overflow-hidden">
+      {/* Ambient Warm Light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-r from-amber-100/30 via-orange-100/20 to-transparent blur-[130px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
         
         {/* Section Header */}
         <div className="mb-12 md:mb-16 max-w-2xl">
@@ -116,7 +119,7 @@ export function ReviewsBlock() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-50 border border-gray-200 rounded-2xl p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow"
+              className="bg-white border border-stone-200/90 rounded-2xl p-7 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_14px_35px_rgba(0,0,0,0.06)] hover:border-stone-300 transition-all"
             >
               <div>
                 {/* Stars */}

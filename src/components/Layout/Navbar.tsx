@@ -75,7 +75,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
     <motion.header 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 hairline-b bg-white/95 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
+      className="fixed top-0 left-0 right-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-stone-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
     >
       <div className="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between w-full">
         {/* Left Side: Logo */}

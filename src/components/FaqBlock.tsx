@@ -34,8 +34,11 @@ export function FaqBlock() {
   const [activeIdx, setActiveIdx] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+    <section id="faq" className="relative bg-[#FAF9F6] py-20 md:py-28 border-t border-stone-200/80 overflow-hidden">
+      {/* Ambient Warm Interior Glow */}
+      <div className="absolute top-1/2 left-[-5%] w-[500px] h-[500px] bg-gradient-to-tr from-amber-100/30 via-orange-100/20 to-transparent blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           
           {/* Left Header */}
@@ -49,7 +52,7 @@ export function FaqBlock() {
           </div>
 
           {/* Right Accordion List */}
-          <div className="lg:col-span-7 divide-y divide-gray-200 border-b border-t border-gray-200">
+          <div className="lg:col-span-7 divide-y divide-stone-200/80 border-b border-t border-stone-200/80">
             {faqItems.map((item, index) => {
               const isOpen = activeIdx === index;
               return (

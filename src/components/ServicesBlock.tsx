@@ -65,8 +65,12 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
   ];
 
   return (
-    <section id="services" className="relative bg-white pt-20 pb-24 md:pt-28 md:pb-32 border-t border-gray-200">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+    <section id="services" className="relative bg-[#F6F5F2] pt-20 pb-24 md:pt-28 md:pb-32 border-t border-stone-200/80 overflow-hidden">
+      {/* Ambient Warm Interior Glow */}
+      <div className="absolute -top-32 right-[-5%] w-[600px] h-[600px] bg-gradient-to-bl from-orange-200/25 via-amber-100/15 to-transparent blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-32 left-[-5%] w-[500px] h-[500px] bg-gradient-to-tr from-amber-200/20 to-transparent blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
         
         {/* Section Header */}
         <div className="mb-14 md:mb-18 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -91,10 +95,10 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                 <div
                   key={service.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`group relative p-5 rounded-xl cursor-pointer border transition-all duration-200 select-none ${
+                  className={`group relative p-5 rounded-2xl cursor-pointer border transition-all duration-200 select-none ${
                     isActive 
-                      ? 'bg-orange-50/70 border-brand-red shadow-sm' 
-                      : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50/80'
+                      ? 'bg-white border-brand-red shadow-[0_8px_25px_rgba(224,90,43,0.08)]' 
+                      : 'bg-white/70 hover:bg-white border-stone-200/80 hover:border-stone-300 shadow-[0_2px_8px_rgba(0,0,0,0.02)]'
                   }`}
                 >
                   <div className="flex items-start gap-4">

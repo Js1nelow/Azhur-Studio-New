@@ -9,8 +9,11 @@ export function AboutBlock() {
   ];
 
   return (
-    <section id="about" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+    <section id="about" className="relative bg-[#F6F5F2] py-20 md:py-28 border-t border-stone-200/80 overflow-hidden">
+      {/* Ambient Warm Interior Glow */}
+      <div className="absolute top-1/2 right-[-5%] w-[550px] h-[550px] bg-gradient-to-bl from-orange-200/20 via-amber-100/15 to-transparent blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* Left Column: Олег Portrait */}
@@ -20,7 +23,7 @@ export function AboutBlock() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative w-full max-w-[420px] rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-white"
+              className="relative w-full max-w-[420px] rounded-2xl overflow-hidden border border-stone-200/90 shadow-[0_16px_40px_rgba(0,0,0,0.06)] bg-white"
             >
               <img
                 src="/azhur/photo/o_nas.webp"
@@ -28,7 +31,7 @@ export function AboutBlock() {
                 className="w-full aspect-[3/4] object-cover"
               />
               
-              <div className="p-4 bg-white border-t border-gray-200">
+              <div className="p-4 bg-white/95 backdrop-blur-xs border-t border-stone-200">
                 <div className="text-base font-bold text-gray-950">Олег Мисягин</div>
                 <div className="text-xs text-gray-600 mt-0.5">Основатель и ведущий мастер «Ажур Студии»</div>
               </div>
@@ -49,11 +52,16 @@ export function AboutBlock() {
               </p>
             </div>
 
-            {/* Stats row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+            {/* Stats row: Elevated white cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-stone-200/80">
               {stats.map((stat, idx) => (
-                <div key={idx} className="p-4 rounded-xl bg-gray-50 border border-gray-200">
-                  <div className="mb-2">{stat.icon}</div>
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-white border border-stone-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-orange-50 text-brand-red flex items-center justify-center mb-3 border border-orange-200/80">
+                    {stat.icon}
+                  </div>
                   <div className="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight">
                     {stat.value}
                   </div>

@@ -73,8 +73,12 @@ export function ContactFormBlock() {
   ];
 
   return (
-    <section id="contact" className="relative bg-white py-20 md:py-28 border-t border-gray-200">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+    <section id="contact" className="relative bg-[#FAF9F6] py-20 md:py-28 border-t border-stone-200/80 overflow-hidden">
+      {/* Ambient Warm Interior Glow */}
+      <div className="absolute top-0 right-[-10%] w-[650px] h-[650px] bg-gradient-to-bl from-orange-200/30 via-amber-100/20 to-transparent blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-[-10%] w-[550px] h-[550px] bg-gradient-to-tr from-amber-200/25 via-orange-100/15 to-transparent blur-[130px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Column: Title & Info */}
@@ -89,7 +93,7 @@ export function ContactFormBlock() {
             </div>
 
             {/* Benefit list */}
-            <div className="space-y-3 pt-6 border-t border-gray-200">
+            <div className="space-y-3 pt-6 border-t border-stone-200/80">
               {features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <span className="text-brand-red font-bold text-sm shrink-0">✓</span>
@@ -100,14 +104,14 @@ export function ContactFormBlock() {
               ))}
             </div>
 
-            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-xs text-gray-600 leading-relaxed">
+            <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-xs border border-stone-200/80 text-xs text-gray-600 leading-relaxed shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
               Работаем по всей Москве и Московской области. Выезжаем на замер ежедневно без выходных.
             </div>
           </div>
 
           {/* Right Column: Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-lg">
+            <div className="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.06)]">
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.form
