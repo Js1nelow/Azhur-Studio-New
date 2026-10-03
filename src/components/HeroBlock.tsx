@@ -22,12 +22,24 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
   return (
     <section id="hero" className="relative min-h-[90svh] flex items-center bg-[#FAF9F6] pt-24 pb-16 lg:pt-32 lg:pb-20 border-b border-stone-200/80 overflow-hidden">
       
-      {/* Ambient Indirect Light Glow (3000K warm interior illumination) */}
-      <div className="absolute -top-32 right-[-5%] w-[680px] h-[680px] bg-gradient-to-br from-amber-200/40 via-orange-100/25 to-transparent blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute -bottom-24 -left-16 w-[520px] h-[520px] bg-gradient-to-tr from-orange-200/30 via-amber-100/20 to-transparent blur-[120px] rounded-full pointer-events-none" />
-      
-      {/* Subtle recessed ceiling light datum line */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-red/35 to-transparent pointer-events-none" />
+      {/* Background Interior Layer (Real Azhur ceiling project) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <img
+          src="/new_image_azhur/nezhinskaya/4.webp"
+          alt=""
+          className="w-full h-full object-cover object-[65%_35%] opacity-25 filter blur-[1.5px] scale-105"
+        />
+        {/* Architectural smooth gradients ensuring crystal clear text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF9F6] via-[#FAF9F6]/90 to-[#FAF9F6]/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6]/70 via-transparent to-[#FAF9F6]" />
+        
+        {/* Ambient Warm Interior Glow */}
+        <div className="absolute -top-32 right-[-5%] w-[680px] h-[680px] bg-gradient-to-br from-amber-200/40 via-orange-100/25 to-transparent blur-[130px] rounded-full" />
+        <div className="absolute -bottom-24 -left-16 w-[520px] h-[520px] bg-gradient-to-tr from-orange-200/30 via-amber-100/20 to-transparent blur-[120px] rounded-full" />
+        
+        {/* Subtle recessed ceiling datum light line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-red/40 to-transparent" />
+      </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
