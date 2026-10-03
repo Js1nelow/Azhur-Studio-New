@@ -108,6 +108,18 @@ export function WorksBento({ onOpenCalculator }: WorksBentoProps) {
     setActiveMobileIndex(Math.min(Math.max(index, 0), bentoItems.length - 1));
   };
 
+  const scrollPrev = () => {
+    if (!scrollRef.current) return;
+    const itemWidth = scrollRef.current.clientWidth * 0.85;
+    scrollRef.current.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+  };
+
+  const scrollNext = () => {
+    if (!scrollRef.current) return;
+    const itemWidth = scrollRef.current.clientWidth * 0.85;
+    scrollRef.current.scrollBy({ left: itemWidth, behavior: 'smooth' });
+  };
+
   return (
     <section id="works" className="relative bg-white pt-16 pb-20 md:pt-28 md:pb-28 border-t border-stone-200/80 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
@@ -193,21 +205,57 @@ export function WorksBento({ onOpenCalculator }: WorksBentoProps) {
             ))}
           </div>
 
-          {/* Mobile pagination indicator & dots */}
+          {/* Mobile pagination indicator & buttons */}
           <div className="flex items-center justify-between mt-3 px-1">
+            {/* Dots */}
             <div className="flex items-center gap-1.5">
               {bentoItems.map((_, i) => (
-                <div
+                <button
                   key={i}
+                  type="button"
+                  onClick={() => {
+                    if (!scrollRef.current) return;
+                    const itemWidth = scrollRef.current.clientWidth * 0.85;
+                    scrollRef.current.scrollTo({ left: i * itemWidth, behavior: 'smooth' });
+                  }}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     activeMobileIndex === i ? 'w-6 bg-brand-red' : 'w-1.5 bg-stone-300'
                   }`}
+                  aria-label={`Кейс ${i + 1}`}
                 />
               ))}
             </div>
-            <span className="text-xs text-gray-500 font-medium">
-              Кейс {activeMobileIndex + 1} из {bentoItems.length} (листайте)
-            </span>
+
+            {/* Counter & Arrow Buttons */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500 font-medium">
+                {activeMobileIndex + 1} / {bentoItems.length}
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={scrollPrev}
+                  disabled={activeMobileIndex === 0}
+                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileIndex === 0 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  }`}
+                  aria-label="Предыдущий кейс"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={scrollNext}
+                  disabled={activeMobileIndex === bentoItems.length - 1}
+                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileIndex === bentoItems.length - 1 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  }`}
+                  aria-label="Следующий кейс"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

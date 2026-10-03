@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, ArrowRight, Check } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ArrowRight, Check } from 'lucide-react';
 
 interface ServicesBlockProps {
   onOpenCalculator: (service?: string) => void;
@@ -8,6 +8,8 @@ interface ServicesBlockProps {
 
 export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+  const [activeMobileService, setActiveMobileService] = useState(0);
 
   const services = [
     {
@@ -64,27 +66,49 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
     }
   ];
 
+  const handleMobileScroll = () => {
+    if (!mobileScrollRef.current) return;
+    const { scrollLeft, clientWidth } = mobileScrollRef.current;
+    const index = Math.round(scrollLeft / (clientWidth * 0.86));
+    setActiveMobileService(Math.min(Math.max(index, 0), services.length - 1));
+  };
+
+  const scrollServicePrev = () => {
+    if (!mobileScrollRef.current) return;
+    const itemWidth = mobileScrollRef.current.clientWidth * 0.86;
+    mobileScrollRef.current.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+  };
+
+  const scrollServiceNext = () => {
+    if (!mobileScrollRef.current) return;
+    const itemWidth = mobileScrollRef.current.clientWidth * 0.86;
+    mobileScrollRef.current.scrollBy({ left: itemWidth, behavior: 'smooth' });
+  };
+
   return (
-    <section id="services" className="relative bg-[#F6F5F2] pt-20 pb-24 md:pt-28 md:pb-32 border-t border-stone-200/80 overflow-hidden">
+    <section id="services" className="relative bg-[#F6F5F2] pt-16 pb-20 md:pt-28 md:pb-32 border-t border-stone-200/80 overflow-hidden">
       {/* Ambient Warm Interior Glow */}
       <div className="absolute -top-32 right-[-5%] w-[600px] h-[600px] bg-gradient-to-bl from-orange-200/25 via-amber-100/15 to-transparent blur-[130px] rounded-full pointer-events-none" />
       <div className="absolute -bottom-32 left-[-5%] w-[500px] h-[500px] bg-gradient-to-tr from-amber-200/20 to-transparent blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
         
         {/* Section Header */}
-        <div className="mb-14 md:mb-18 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="mb-8 md:mb-18 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight mb-4" id="services-title">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 text-brand-red text-xs font-semibold mb-3 border border-orange-200/80">
+              <span>● Каталог систем</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight mb-2 md:mb-4" id="services-title">
               Виды потолков и конструкций
             </h2>
-            <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+            <p className="text-gray-600 text-sm sm:text-lg leading-relaxed">
               Подбираем решения под ваш бюджет: от классических белых полотен до теневых систем EuroKRAAB и трекового света.
             </p>
           </div>
         </div>
 
-        {/* Desktop Layout */}
+        {/* DESKTOP VIEW: Split Menu + Detail Showcase */}
         <div className="hidden lg:grid grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Menu Selector */}
@@ -139,7 +163,7 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
-                className="bg-white border border-gray-200 p-8 xl:p-10 rounded-2xl shadow-md flex flex-col justify-between min-h-[460px]"
+                className="bg-white border border-stone-200/90 p-8 xl:p-10 rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.04)] flex flex-col justify-between min-h-[460px]"
               >
                 <div>
                   <div className="mb-6">
@@ -155,7 +179,7 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                   </div>
 
                   {/* Tech Specs */}
-                  <div className="grid grid-cols-2 gap-4 py-5 border-t border-b border-gray-200 mb-6">
+                  <div className="grid grid-cols-2 gap-4 py-5 border-t border-b border-stone-200 mb-6">
                     {services[activeIndex].specs.map((spec, sIdx) => (
                       <div key={sIdx} className="space-y-0.5">
                         <span className="text-xs text-gray-500 block">
@@ -188,7 +212,7 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                 <div>
                   <button
                     onClick={() => onOpenCalculator(services[activeIndex].title)}
-                    className="w-full sm:w-auto bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                    className="w-full sm:w-auto bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm px-7 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
                   >
                     <span>Рассчитать стоимость</span>
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -199,89 +223,128 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
           </div>
         </div>
 
-        {/* Mobile Showcase: Horizontal Tab Pills + Interactive Card */}
+        {/* MOBILE VIEW: Horizontal Snap Slider with Controls (IDENTICAL TO CASES) */}
         <div className="lg:hidden">
-          {/* Scrollable Tab Pills */}
-          <div className="flex gap-2 overflow-x-auto scrollbar-none pb-2 -mx-5 px-5 mb-4">
-            {services.map((service, index) => {
-              const isActive = activeIndex === index;
-              return (
+          <div
+            ref={mobileScrollRef}
+            onScroll={handleMobileScroll}
+            className="flex gap-3.5 overflow-x-auto snap-x snap-mandatory scrollbar-none -mx-5 px-5 pb-3 pt-1"
+          >
+            {services.map((service) => (
+              <div
+                key={service.id}
+                className="w-[86vw] max-w-[340px] shrink-0 snap-center rounded-2xl bg-white border border-stone-200/90 shadow-md p-5 flex flex-col justify-between"
+              >
+                <div>
+                  {/* Top Index & Subtitle */}
+                  <div className="flex items-center justify-between mb-2.5">
+                    <span className="font-mono text-xs font-bold text-brand-red bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200/80">
+                      {service.id}
+                    </span>
+                    <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider truncate max-w-[210px]">
+                      {service.subtitle}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-extrabold text-gray-950 tracking-tight mb-2">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-xs text-gray-700 leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+
+                  {/* 2x2 Tech Specs Grid */}
+                  <div className="grid grid-cols-2 gap-2.5 py-3 border-t border-b border-stone-200/80 mb-4 bg-stone-50/70 -mx-5 px-5">
+                    {service.specs.map((spec, sIdx) => (
+                      <div key={sIdx} className="space-y-0.5">
+                        <span className="text-[10px] text-gray-500 uppercase tracking-wider block">
+                          {spec.label}
+                        </span>
+                        <span className="text-xs font-bold text-gray-900 block leading-tight">
+                          {spec.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-2 mb-5">
+                    {service.features.map((feature, fIdx) => (
+                      <div key={fIdx} className="flex items-start gap-2 text-xs text-gray-800">
+                        <div className="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check size={10} strokeWidth={3} />
+                        </div>
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Primary Mobile CTA Button */}
                 <button
-                  key={service.id}
-                  onClick={() => setActiveIndex(index)}
-                  className={`shrink-0 flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-brand-red text-white shadow-md'
-                      : 'bg-white text-gray-700 border border-stone-200/90 shadow-2xs'
-                  }`}
+                  onClick={() => onOpenCalculator(service.title)}
+                  className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-sm font-semibold py-3.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
                 >
-                  <span className={`font-mono text-[11px] ${isActive ? 'text-white/80' : 'text-brand-red'}`}>
-                    {service.id}
-                  </span>
-                  <span>{service.title}</span>
+                  <span>Рассчитать стоимость</span>
+                  <ArrowRight size={16} />
                 </button>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
-          {/* Active Service Card on Mobile */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="bg-white border border-stone-200/90 p-5 sm:p-6 rounded-2xl shadow-md"
-            >
-              <div className="mb-4">
-                <span className="text-[11px] font-bold text-brand-red uppercase tracking-wider block mb-1">
-                  {services[activeIndex].subtitle}
-                </span>
-                <h3 className="text-xl font-extrabold text-gray-950 tracking-tight mb-2">
-                  {services[activeIndex].title}
-                </h3>
-                <p className="text-xs text-gray-700 leading-relaxed">
-                  {services[activeIndex].description}
-                </p>
-              </div>
+          {/* Mobile Navigation Controls: Dots + Counter + Arrows [←] [→] */}
+          <div className="flex items-center justify-between mt-3 px-1">
+            <div className="flex items-center gap-1.5">
+              {services.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => {
+                    if (!mobileScrollRef.current) return;
+                    const itemWidth = mobileScrollRef.current.clientWidth * 0.86;
+                    mobileScrollRef.current.scrollTo({ left: i * itemWidth, behavior: 'smooth' });
+                  }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeMobileService === i ? 'w-6 bg-brand-red' : 'w-1.5 bg-stone-300'
+                  }`}
+                  aria-label={`Услуга ${i + 1}`}
+                />
+              ))}
+            </div>
 
-              {/* 2x2 Tech Specs Grid */}
-              <div className="grid grid-cols-2 gap-3 py-3.5 border-t border-b border-stone-200/90 mb-4 bg-stone-50/60 -mx-5 px-5">
-                {services[activeIndex].specs.map((spec, sIdx) => (
-                  <div key={sIdx} className="space-y-0.5">
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider block">
-                      {spec.label}
-                    </span>
-                    <span className="text-xs font-bold text-gray-900 block leading-tight">
-                      {spec.value}
-                    </span>
-                  </div>
-                ))}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500 font-medium">
+                {activeMobileService + 1} / {services.length}
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={scrollServicePrev}
+                  disabled={activeMobileService === 0}
+                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileService === 0 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  }`}
+                  aria-label="Предыдущая услуга"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={scrollServiceNext}
+                  disabled={activeMobileService === services.length - 1}
+                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileService === services.length - 1 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  }`}
+                  aria-label="Следующая услуга"
+                >
+                  <ChevronRight size={16} />
+                </button>
               </div>
-
-              {/* Features List */}
-              <div className="space-y-2 mb-5">
-                {services[activeIndex].features.map((feature, fIdx) => (
-                  <div key={fIdx} className="flex items-start gap-2 text-xs text-gray-800">
-                    <div className="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check size={10} strokeWidth={3} />
-                    </div>
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Primary Mobile CTA */}
-              <button
-                onClick={() => onOpenCalculator(services[activeIndex].title)}
-                className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-sm font-semibold py-3.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
-              >
-                <span>Рассчитать стоимость</span>
-                <ArrowRight size={16} />
-              </button>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </div>
         </div>
 
       </div>
