@@ -124,10 +124,10 @@ export function CostModal({ isOpen, onClose, selectedService }: CostModalProps) 
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-950">
-                      Онлайн-расчет сметы
+                      Рассчитайте стоимость сметы
                     </h3>
                     <p className="text-xs text-gray-600 mt-0.5">
-                      Укажите параметры — перезвоним с точной цифрой
+                      Подберём решение под ваш бюджет и пришлём точный расчет без наценок
                     </p>
                   </div>
                 </div>
@@ -241,7 +241,7 @@ export function CostModal({ isOpen, onClose, selectedService }: CostModalProps) 
                   <button
                     type="submit"
                     disabled={isSubmitting || !isPhoneValid}
-                    className={`w-full py-3.5 rounded-lg font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
+                    className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
                       isPhoneValid
                         ? 'bg-brand-red hover:bg-brand-red-hover text-white hover:shadow-md'
                         : 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -254,11 +254,15 @@ export function CostModal({ isOpen, onClose, selectedService }: CostModalProps) 
                       </>
                     ) : (
                       <>
-                        <span>Получить расчет сметы</span>
+                        <span>Получить точный расчет сметы</span>
                         <ArrowRight size={16} />
                       </>
                     )}
                   </button>
+
+                  <div className="flex items-center justify-center gap-1.5 text-[11px] text-gray-500 pt-0.5">
+                    <span>🔒 Никакого спама. Точный расчет в WhatsApp или звонком за 15 минут</span>
+                  </div>
                 </form>
               </div>
             ) : (
