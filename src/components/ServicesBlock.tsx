@@ -199,43 +199,89 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
           </div>
         </div>
 
-        {/* Mobile Showcase */}
-        <div className="lg:hidden space-y-4">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white border border-gray-200 p-6 rounded-xl shadow-xs"
+        {/* Mobile Showcase: Horizontal Tab Pills + Interactive Card */}
+        <div className="lg:hidden">
+          {/* Scrollable Tab Pills */}
+          <div className="flex gap-2 overflow-x-auto scrollbar-none pb-2 -mx-5 px-5 mb-4">
+            {services.map((service, index) => {
+              const isActive = activeIndex === index;
+              return (
+                <button
+                  key={service.id}
+                  onClick={() => setActiveIndex(index)}
+                  className={`shrink-0 flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all cursor-pointer ${
+                    isActive
+                      ? 'bg-brand-red text-white shadow-md'
+                      : 'bg-white text-gray-700 border border-stone-200/90 shadow-2xs'
+                  }`}
+                >
+                  <span className={`font-mono text-[11px] ${isActive ? 'text-white/80' : 'text-brand-red'}`}>
+                    {service.id}
+                  </span>
+                  <span>{service.title}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Service Card on Mobile */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white border border-stone-200/90 p-5 sm:p-6 rounded-2xl shadow-md"
             >
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="font-mono text-xs font-bold text-brand-red">{service.id}</span>
-                <h3 className="text-lg font-bold text-gray-950">
-                  {service.title}
+              <div className="mb-4">
+                <span className="text-[11px] font-bold text-brand-red uppercase tracking-wider block mb-1">
+                  {services[activeIndex].subtitle}
+                </span>
+                <h3 className="text-xl font-extrabold text-gray-950 tracking-tight mb-2">
+                  {services[activeIndex].title}
                 </h3>
+                <p className="text-xs text-gray-700 leading-relaxed">
+                  {services[activeIndex].description}
+                </p>
               </div>
 
-              <p className="text-xs text-gray-500 mb-3">{service.subtitle}</p>
-              <p className="text-xs text-gray-700 leading-relaxed mb-4">
-                {service.description}
-              </p>
-
-              <div className="space-y-1.5 border-t border-b border-gray-200 py-3 mb-4">
-                {service.specs.slice(0, 2).map((s, idx) => (
-                  <div key={idx} className="flex justify-between text-xs">
-                    <span className="text-gray-500">{s.label}:</span>
-                    <span className="font-semibold text-gray-900">{s.value}</span>
+              {/* 2x2 Tech Specs Grid */}
+              <div className="grid grid-cols-2 gap-3 py-3.5 border-t border-b border-stone-200/90 mb-4 bg-stone-50/60 -mx-5 px-5">
+                {services[activeIndex].specs.map((spec, sIdx) => (
+                  <div key={sIdx} className="space-y-0.5">
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider block">
+                      {spec.label}
+                    </span>
+                    <span className="text-xs font-bold text-gray-900 block leading-tight">
+                      {spec.value}
+                    </span>
                   </div>
                 ))}
               </div>
 
+              {/* Features List */}
+              <div className="space-y-2 mb-5">
+                {services[activeIndex].features.map((feature, fIdx) => (
+                  <div key={fIdx} className="flex items-start gap-2 text-xs text-gray-800">
+                    <div className="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check size={10} strokeWidth={3} />
+                    </div>
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Primary Mobile CTA */}
               <button
-                onClick={() => onOpenCalculator(service.title)}
-                className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-xs font-semibold py-3 rounded-lg flex items-center justify-center gap-2"
+                onClick={() => onOpenCalculator(services[activeIndex].title)}
+                className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-sm font-semibold py-3.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
               >
-                <span>Узнать цену</span>
-                <ArrowRight size={14} />
+                <span>Рассчитать стоимость</span>
+                <ArrowRight size={16} />
               </button>
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
