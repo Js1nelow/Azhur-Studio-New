@@ -20,24 +20,24 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
   };
 
   return (
-    <section id="hero" className="relative min-h-[90svh] flex items-center bg-[#FAF9F6] pt-24 pb-16 lg:pt-32 lg:pb-20 border-b border-stone-200/80 overflow-hidden">
+    <section id="hero" className="relative min-h-[90svh] flex items-center bg-[#FAF9F6] pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-stone-200/80 overflow-hidden">
       
-      {/* Background Interior Layer (Real Azhur ceiling project) */}
+      {/* Background Interior Layer (Real Azhur ceiling project - VISIBLE & VIBRANT) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
         <img
           src="/new_image_azhur/nezhinskaya/4.webp"
-          alt=""
-          className="w-full h-full object-cover object-[65%_35%] opacity-25 filter blur-[1.5px] scale-105"
+          alt="Готовый натяжной потолок с трековым светом"
+          className="w-full h-full object-cover object-[75%_35%] opacity-75 md:opacity-85 scale-100"
         />
-        {/* Architectural smooth gradients ensuring crystal clear text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF9F6] via-[#FAF9F6]/90 to-[#FAF9F6]/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6]/70 via-transparent to-[#FAF9F6]" />
+        
+        {/* Directional Scrim: Solid high-contrast readability on the left, open vibrant interior on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF9F6] via-[#FAF9F6] via-45% lg:via-52% to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6]/60 via-transparent to-[#FAF9F6] h-full" />
         
         {/* Ambient Warm Interior Glow */}
-        <div className="absolute -top-32 right-[-5%] w-[680px] h-[680px] bg-gradient-to-br from-amber-200/40 via-orange-100/25 to-transparent blur-[130px] rounded-full" />
-        <div className="absolute -bottom-24 -left-16 w-[520px] h-[520px] bg-gradient-to-tr from-orange-200/30 via-amber-100/20 to-transparent blur-[120px] rounded-full" />
+        <div className="absolute -top-32 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-amber-300/30 via-orange-200/20 to-transparent blur-[100px] rounded-full" />
         
-        {/* Subtle recessed ceiling datum light line */}
+        {/* Subtle recessed ceiling datum line */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-red/40 to-transparent" />
       </div>
 
@@ -47,14 +47,14 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
           {/* Left Column: Offer & Conversion Stack */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             
-            {/* Main Conversion Headline */}
+            {/* Main Conversion Headline with protected non-breaking typography */}
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold leading-[1.12] tracking-tight text-gray-950 mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[54px] font-extrabold leading-[1.14] tracking-tight text-gray-950 mb-5 max-w-2xl"
             >
-              Натяжные потолки от <span className="text-brand-red">790 ₽/м²</span> с чистым монтажом за 1 день
+              Натяжные потолки <span className="text-brand-red whitespace-nowrap">от 790 ₽/м²</span> с чистым монтажом <span className="whitespace-nowrap">за 1 день</span>
             </motion.h1>
 
             {/* Subhead / Guarantee */}
@@ -62,7 +62,7 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mb-7 font-normal"
+              className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-xl mb-7 font-normal"
             >
               Фиксируем точную смету в договоре до начала работ. Никаких доплат после монтажа. Безопасные полимерные баллоны, полотна без запаха и аккуратная работа без пыли.
             </motion.p>
@@ -97,7 +97,7 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               {trustPoints.map((point, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2 bg-white/80 backdrop-blur-xs border border-stone-200/90 px-3.5 py-1.5 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.03)] text-xs sm:text-sm text-gray-800"
+                  className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-stone-200/90 px-3.5 py-1.5 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.03)] text-xs sm:text-sm text-gray-800"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
                   <span className="font-medium">{point}</span>
@@ -133,19 +133,15 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
 
           </div>
 
-          {/* Right Column: Master Photo (Desktop with ambient halo) */}
-          <div className="hidden md:flex lg:col-span-5 justify-center items-center relative">
-            
-            {/* Warm backlight halo behind portrait */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-orange-300/25 via-amber-200/30 to-transparent blur-3xl rounded-3xl scale-110 pointer-events-none" />
-
+          {/* Right Column: Master Card Integrated with the Real Interior */}
+          <div className="hidden md:flex lg:col-span-5 justify-center lg:justify-end items-center relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="relative w-full max-w-[420px]"
+              className="relative w-full max-w-[390px]"
             >
-              <div className="relative rounded-2xl overflow-hidden border border-stone-200/90 bg-white shadow-[0_20px_50px_rgba(224,90,43,0.09),0_10px_30px_rgba(0,0,0,0.06)]">
+              <div className="relative rounded-2xl overflow-hidden border border-stone-200/90 bg-white/95 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_25px_rgba(224,90,43,0.08)]">
                 <img
                   src="/azhur/photo/hero.webp"
                   alt="Олег Мисягин — ведущий специалист"
@@ -153,11 +149,11 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
                   loading="eager"
                 />
                 
-                {/* Clean master badge with warm frosted glass */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md border border-stone-200 p-4 rounded-xl shadow-md">
-                  <div className="flex items-center justify-between mb-1">
+                {/* Master info badge */}
+                <div className="p-4 bg-white/95 backdrop-blur-md border-t border-stone-200">
+                  <div className="flex items-center justify-between mb-1.5">
                     <span className="font-extrabold text-gray-950 text-base">Олег Мисягин</span>
-                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-orange-50 text-brand-red border border-orange-200/90 uppercase tracking-wider">
+                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-orange-50 text-brand-red border border-orange-200 uppercase tracking-wider">
                       Опыт 17 лет
                     </span>
                   </div>
