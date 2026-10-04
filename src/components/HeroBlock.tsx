@@ -67,26 +67,6 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               Фиксируем точную смету в договоре до начала работ. Никаких доплат после монтажа. Безопасные полимерные баллоны, полотна без запаха и аккуратная работа без пыли.
             </motion.p>
 
-            {/* Mobile-Only Master Photo */}
-            <div className="block md:hidden mb-6">
-              <div className="relative rounded-2xl overflow-hidden border border-stone-200/80 shadow-[0_12px_30px_rgba(0,0,0,0.06)] bg-white">
-                <img
-                  src="/azhur/photo/hero.webp"
-                  alt="Ведущий мастер Олег Мисягин"
-                  className="w-full aspect-[4/3] object-cover"
-                />
-                <div className="p-4 bg-white/95 backdrop-blur-xs border-t border-stone-200 flex items-center justify-between">
-                  <div>
-                    <div className="font-bold text-gray-950 text-sm">Олег Мисягин</div>
-                    <div className="text-xs text-gray-600">Ведущий мастер • Контроль смет и монтажа</div>
-                  </div>
-                  <div className="text-xs font-semibold px-2.5 py-1 rounded-full bg-orange-50 text-brand-red border border-orange-200/80">
-                    Опыт 17 лет
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Clean Architectural Trust Strip (Subtle warm floating badges) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -105,43 +85,43 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               ))}
             </motion.div>
 
-            {/* CTA Action Buttons: Perfectly aligned, equal height (h-14), single line */}
+            {/* CTA Action Buttons: Clear hierarchy (Primary + Secondary), refined mobile ergonomics */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 max-w-xl"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-xl"
             >
               <button
                 type="button"
                 onClick={() => onOpenCalculator('Натяжные потолки')}
-                className="flex-1 h-14 bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm sm:text-base px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap active:scale-[0.99]"
+                className="w-full sm:flex-1 h-13 bg-brand-red hover:bg-brand-red-hover text-white font-semibold text-sm sm:text-base px-6 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap active:scale-[0.99]"
               >
-                <Calculator className="w-5 h-5 shrink-0" />
+                <Calculator className="w-4.5 h-4.5 shrink-0" />
                 <span>Рассчитать смету</span>
               </button>
 
               <button
                 type="button"
                 onClick={handleWhatsAppClick}
-                className="flex-1 h-14 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm sm:text-base px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap active:scale-[0.99]"
+                className="w-full sm:flex-1 h-13 bg-white hover:bg-stone-50 text-gray-800 border border-stone-200/90 hover:border-emerald-500/50 hover:text-emerald-700 font-semibold text-sm sm:text-base px-6 rounded-xl shadow-2xs transition-all flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap active:scale-[0.99]"
               >
-                <MessageSquare className="w-5 h-5 shrink-0" />
+                <MessageSquare className="w-4.5 h-4.5 text-emerald-600 shrink-0" />
                 <span>Написать в WhatsApp</span>
               </button>
             </motion.div>
 
           </div>
 
-          {/* Right Column: Master Card Integrated with the Real Interior */}
-          <div className="hidden md:flex lg:col-span-5 justify-center lg:justify-end items-center relative">
+          {/* Right Column: Master Card with natural portrait proportions (aspect-4/5), properly framed on all devices */}
+          <div className="flex lg:col-span-5 justify-center lg:justify-end items-center relative mt-8 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="relative w-full max-w-[390px]"
+              className="relative w-full max-w-[360px] lg:max-w-[390px]"
             >
-              <div className="relative rounded-2xl overflow-hidden border border-stone-200/90 bg-white/95 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_25px_rgba(224,90,43,0.08)]">
+              <div className="relative rounded-2xl overflow-hidden border border-stone-200/90 bg-white/95 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.08),0_10px_25px_rgba(224,90,43,0.05)]">
                 <img
                   src="/azhur/photo/hero.webp"
                   alt="Олег Мисягин — ведущий специалист"

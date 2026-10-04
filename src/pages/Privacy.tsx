@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ShieldCheck } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const sections = [
@@ -66,16 +66,6 @@ export function Privacy() {
           <ArrowLeft size={16} />
           <span>Вернуться на главную</span>
         </Link>
-
-        {/* Header Badge */}
-        <div className="flex items-center gap-2 mb-3">
-          <div className="p-1 rounded bg-orange-100/80 text-brand-red">
-            <ShieldCheck size={16} />
-          </div>
-          <span className="font-mono text-xs uppercase tracking-wider font-bold text-brand-red">
-            152-ФЗ «О персональных данных»
-          </span>
-        </div>
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-950 tracking-tight mb-4 leading-tight">
           Политика в отношении обработки персональных данных
