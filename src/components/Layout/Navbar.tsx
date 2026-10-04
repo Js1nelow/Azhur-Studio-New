@@ -127,12 +127,6 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
 
         {/* Right Side: Estimate CTAs */}
         <div className="flex items-center justify-end gap-3 lg:gap-4">
-          {/* Price indicator in main menu */}
-          <div className="hidden lg:flex flex-col items-end text-right justify-center">
-            <span className="text-[11px] font-bold text-brand-red tracking-wider uppercase whitespace-nowrap">от 990 ₽/м²</span>
-            <span className="text-[10px] text-gray-500 font-medium whitespace-nowrap">монтаж за 1 день</span>
-          </div>
-
           {/* Calculate Button (Only visible on sm+) */}
           <button
             onClick={() => onOpenCalculator()}
@@ -194,12 +188,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
               </Link>
             </nav>
 
-            <div className="flex flex-col items-center gap-5 w-full max-w-sm mx-auto shrink-0 mt-8">
-              <div className="text-center">
-                <div className="text-xs font-bold text-brand-red uppercase tracking-wider">от 990 ₽/м² с монтажом</div>
-                <div className="text-[11px] text-gray-500 mt-0.5">Фиксированная смета в договоре</div>
-              </div>
-
+            <div className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto shrink-0 mt-8">
               <div className="w-full">
                 <button
                   onClick={() => {
