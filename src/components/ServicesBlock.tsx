@@ -164,9 +164,6 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
               >
                 <div>
                   <div className="mb-6">
-                    <span className="text-xs font-semibold text-brand-red uppercase tracking-wider block mb-1">
-                      {services[activeIndex].subtitle}
-                    </span>
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight mb-3">
                       {services[activeIndex].title}
                     </h3>
@@ -233,13 +230,10 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                 className="w-[86vw] max-w-[340px] shrink-0 snap-center rounded-2xl bg-white border border-stone-200/90 shadow-md p-5 flex flex-col justify-between"
               >
                 <div>
-                  {/* Top Index & Subtitle */}
+                  {/* Top Index */}
                   <div className="flex items-center justify-between mb-2.5">
                     <span className="font-mono text-xs font-bold text-brand-red bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200/80">
                       {service.id}
-                    </span>
-                    <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider truncate max-w-[210px]">
-                      {service.subtitle}
                     </span>
                   </div>
 
