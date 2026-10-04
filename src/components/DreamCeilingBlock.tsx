@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Plus, Minus } from 'lucide-react';
-import { LazyVideo } from './LazyVideo';
 
 interface DreamCeilingBlockProps {
   onOpenCalculator: (service?: string) => void;
@@ -58,31 +57,13 @@ export function DreamCeilingBlock({ onOpenCalculator }: DreamCeilingBlockProps) 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           
           {/* Left Column: Headline */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div className="space-y-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight leading-tight">
-                Как проходит работа: 6 понятных шагов
-              </h2>
-              <p className="text-gray-600 text-base leading-relaxed">
-                От первого звонка до готового натяжного потолка по смете, которая не растёт в процессе монтажа.
-              </p>
-            </div>
-
-            {/* Video Showcase Card */}
-            <div className="hidden lg:block mt-8">
-              <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-md aspect-video bg-gray-100">
-                <LazyVideo
-                  src="/new_image_azhur/IMG_0756.mp4"
-                  poster="/azhur/photo/hero.webp"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
-                  <div className="text-white text-xs font-medium">
-                    Процесс чистого монтажа с пылесосом
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="lg:col-span-5 lg:sticky lg:top-28 self-start space-y-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight leading-tight">
+              Как проходит работа: 6 понятных шагов
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+              От первого звонка до готового натяжного потолка по смете, которая не растёт в процессе монтажа.
+            </p>
           </div>
 
           {/* Right Column: Steps Accordion */}
