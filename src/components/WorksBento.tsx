@@ -126,9 +126,6 @@ export function WorksBento({ onOpenCalculator }: WorksBentoProps) {
         
         {/* Section Header */}
         <div className="mb-8 md:mb-16 max-w-3xl">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 text-brand-red text-xs font-semibold mb-3 border border-orange-200/80">
-            <span>● Видеоотчёты с объектов</span>
-          </div>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight mb-3" id="works-title">
             Реальные работы со сметами
           </h2>
@@ -236,23 +233,23 @@ export function WorksBento({ onOpenCalculator }: WorksBentoProps) {
                   type="button"
                   onClick={scrollPrev}
                   disabled={activeMobileIndex === 0}
-                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
-                    activeMobileIndex === 0 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  className={`w-10 h-10 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileIndex === 0 ? 'opacity-35 cursor-not-allowed' : 'active:scale-95 hover:bg-stone-50'
                   }`}
                   aria-label="Предыдущий кейс"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={18} />
                 </button>
                 <button
                   type="button"
                   onClick={scrollNext}
                   disabled={activeMobileIndex === bentoItems.length - 1}
-                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
-                    activeMobileIndex === bentoItems.length - 1 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  className={`w-10 h-10 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileIndex === bentoItems.length - 1 ? 'opacity-35 cursor-not-allowed' : 'active:scale-95 hover:bg-stone-50'
                   }`}
                   aria-label="Следующий кейс"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={18} />
                 </button>
               </div>
             </div>

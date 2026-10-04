@@ -96,9 +96,6 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
         {/* Section Header */}
         <div className="mb-8 md:mb-18 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 text-brand-red text-xs font-semibold mb-3 border border-orange-200/80">
-              <span>● Каталог систем</span>
-            </div>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 tracking-tight mb-2 md:mb-4" id="services-title">
               Виды потолков и конструкций
             </h2>
@@ -324,23 +321,23 @@ export function ServicesBlock({ onOpenCalculator }: ServicesBlockProps) {
                   type="button"
                   onClick={scrollServicePrev}
                   disabled={activeMobileService === 0}
-                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
-                    activeMobileService === 0 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  className={`w-10 h-10 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileService === 0 ? 'opacity-35 cursor-not-allowed' : 'active:scale-95 hover:bg-stone-50'
                   }`}
                   aria-label="Предыдущая услуга"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={18} />
                 </button>
                 <button
                   type="button"
                   onClick={scrollServiceNext}
                   disabled={activeMobileService === services.length - 1}
-                  className={`w-8 h-8 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
-                    activeMobileService === services.length - 1 ? 'opacity-35 cursor-not-allowed' : 'active:scale-90 hover:bg-stone-50'
+                  className={`w-10 h-10 rounded-full bg-white border border-stone-200/90 shadow-2xs flex items-center justify-center text-gray-700 transition-all cursor-pointer ${
+                    activeMobileService === services.length - 1 ? 'opacity-35 cursor-not-allowed' : 'active:scale-95 hover:bg-stone-50'
                   }`}
                   aria-label="Следующая услуга"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={18} />
                 </button>
               </div>
             </div>
