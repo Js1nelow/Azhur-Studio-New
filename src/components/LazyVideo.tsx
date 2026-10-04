@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'motion/react';
 
 type LazyVideoProps = React.ComponentPropsWithoutRef<'video'> & {
   src: string;
@@ -25,7 +24,7 @@ export function LazyVideo({ src, poster, autoPlayVisible = true, className, ...p
           }
         }
       },
-      { rootMargin: '200px' }
+      { rootMargin: '60px' }
     );
 
     if (videoRef.current) {
@@ -41,7 +40,7 @@ export function LazyVideo({ src, poster, autoPlayVisible = true, className, ...p
       poster={poster}
       className={className}
       {...props}
-      preload={isIntersecting ? "auto" : "none"}
+      preload={isIntersecting ? "metadata" : "none"}
       autoPlay={false}
     >
       {isIntersecting && <source src={src} type="video/mp4" />}

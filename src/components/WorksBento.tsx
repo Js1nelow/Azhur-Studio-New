@@ -13,6 +13,8 @@ interface BentoItem {
   location: string;
   used: string;
   thumbnailVideo?: string;
+  fullVideo?: string;
+  poster?: string;
   thumbnailImage?: string;
   galleryImages: string[];
   gridClass: string;
@@ -25,7 +27,9 @@ const bentoItems: BentoItem[] = [
     title: "Парящий потолок с дизайнерским освещением",
     location: "Лобня",
     used: "Полотно Teqtum Euro, профиль Flexy Borzz Fly Max, встраиваемый карниз Flexy Borzz P45",
-    thumbnailVideo: "/new_image_azhur/lobnya.mp4",
+    thumbnailVideo: "/new_image_azhur/lobnya_preview.mp4",
+    fullVideo: "/new_image_azhur/lobnya.mp4",
+    poster: "/new_image_azhur/lobnya_poster.webp",
     galleryImages: [],
     gridClass: "sm:col-span-2 lg:col-span-2 lg:row-span-2 h-[340px] sm:h-[400px] lg:h-[580px]",
     serviceName: "Натяжные потолки"
@@ -35,7 +39,9 @@ const bentoItems: BentoItem[] = [
     title: "Теневое примыкание в частном доме",
     location: "Озерецкое",
     used: "Потолки MSD Evolution, теневое примыкание EuroKraab X, встраиваемые карнизы ПК14",
-    thumbnailVideo: "/new_image_azhur/ozereckoe.mp4",
+    thumbnailVideo: "/new_image_azhur/ozereckoe_preview.mp4",
+    fullVideo: "/new_image_azhur/ozereckoe.mp4",
+    poster: "/new_image_azhur/ozereckoe_poster.webp",
     galleryImages: [],
     gridClass: "sm:col-span-1 lg:col-span-1 lg:row-span-1 h-[240px] sm:h-[280px]",
     serviceName: "Теневой профиль"
@@ -45,7 +51,9 @@ const bentoItems: BentoItem[] = [
     title: "Парящий потолок с магнитными треками",
     location: "Звенигород",
     used: "Теневой профиль EuroKraab 2.0, парящий Flexy Borz Fly Max, ниши под электрокарнизы Lumfer PDK60, встраиваемые магнитные треки",
-    thumbnailVideo: "/new_image_azhur/zvenigorod.mp4",
+    thumbnailVideo: "/new_image_azhur/zvenigorod_preview.mp4",
+    fullVideo: "/new_image_azhur/zvenigorod.mp4",
+    poster: "/new_image_azhur/zvenigorod_poster.webp",
     galleryImages: [],
     gridClass: "sm:col-span-1 lg:col-span-1 lg:row-span-1 h-[240px] sm:h-[280px]",
     serviceName: "Карнизные решения"
@@ -55,7 +63,9 @@ const bentoItems: BentoItem[] = [
     title: "Классика и современность в одном решении",
     location: "Клинский район",
     used: "Плёнка ПВХ Bauf 270, теневое и парящее примыкания к стенам",
-    thumbnailVideo: "/new_image_azhur/klinskiy.mp4",
+    thumbnailVideo: "/new_image_azhur/klinskiy_preview.mp4",
+    fullVideo: "/new_image_azhur/klinskiy.mp4",
+    poster: "/new_image_azhur/klinskiy_poster.webp",
     galleryImages: [],
     gridClass: "sm:col-span-2 lg:col-span-2 lg:row-span-1 h-[240px] sm:h-[280px]",
     serviceName: "Световые линии и треки"
@@ -65,7 +75,9 @@ const bentoItems: BentoItem[] = [
     title: "Стильная спальня с нишей для штор",
     location: "Москва, ул. Нежинская",
     used: "Потолок ПВХ Bauf 270, теневое примыкание EuroKraab, ниша для штор Lumfer PDK100",
-    thumbnailVideo: "/new_image_azhur/nezhinskaya/1.mp4",
+    thumbnailVideo: "/new_image_azhur/nezhinskaya/1_preview.mp4",
+    fullVideo: "/new_image_azhur/nezhinskaya/1.mp4",
+    poster: "/new_image_azhur/nezhinskaya/1_poster.webp",
     galleryImages: [
       "/new_image_azhur/nezhinskaya/1.webp",
       "/new_image_azhur/nezhinskaya/2.webp",
@@ -152,6 +164,7 @@ export function WorksBento({ onOpenCalculator }: WorksBentoProps) {
                   {item.thumbnailVideo ? (
                     <LazyVideo
                       src={item.thumbnailVideo}
+                      poster={item.poster}
                       muted
                       loop
                       playsInline
@@ -276,6 +289,7 @@ export function WorksBento({ onOpenCalculator }: WorksBentoProps) {
                 {item.thumbnailVideo ? (
                   <LazyVideo
                     src={item.thumbnailVideo}
+                    poster={item.poster}
                     muted
                     loop
                     playsInline
@@ -346,7 +360,8 @@ export function WorksBento({ onOpenCalculator }: WorksBentoProps) {
               <div className="relative bg-black flex items-center justify-center overflow-hidden md:col-span-3 min-h-[220px] sm:min-h-[340px] md:min-h-[440px]">
                 {activeItem.thumbnailVideo ? (
                   <video
-                    src={activeItem.thumbnailVideo}
+                    src={activeItem.fullVideo || activeItem.thumbnailVideo}
+                    poster={activeItem.poster}
                     autoPlay
                     controls
                     loop
