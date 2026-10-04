@@ -51,7 +51,7 @@ export default function App() {
           />
           <CookieBanner />
           {/* Floating Contact Widget — always on top */}
-          <FloatingContactWidget />
+          <FloatingContactWidget onOpenCalculator={handleOpenCalculator} />
         </div>
       </TransitionProvider>
     </BrowserRouter>
