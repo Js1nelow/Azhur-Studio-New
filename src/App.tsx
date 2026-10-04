@@ -28,13 +28,15 @@ export default function App() {
     <BrowserRouter>
       <YandexMetrika />
       <TransitionProvider>
-        <div className="min-h-screen bg-brand-black text-brand-light selection:bg-brand-red selection:text-white overflow-x-hidden">
+        <div className="min-h-screen bg-[#FAF9F6] text-slate-900 selection:bg-brand-red selection:text-white overflow-x-hidden">
           {/* Navigation Bar */}
           <Navbar onOpenCalculator={() => handleOpenCalculator()} />
           
           <Routes>
             <Route path="/" element={<Home onOpenCalculator={handleOpenCalculator} />} />
             <Route path="/partners" element={<Partners />} />
+            <Route path="/partners/" element={<Partners />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route path="/privacy/" element={<Privacy />} />
           </Routes>
           

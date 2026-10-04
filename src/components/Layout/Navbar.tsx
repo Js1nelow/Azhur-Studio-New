@@ -99,7 +99,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
                 className={`transition-colors duration-200 relative py-1.5 font-medium ${
                   activeSection === link.id
                     ? 'text-brand-red font-semibold'
-                    : 'text-brand-gray hover:text-brand-light'
+                    : 'text-gray-600 hover:text-gray-950'
                 }`}
               >
                 {link.label}
@@ -112,6 +112,16 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
                 )}
               </Link>
             ))}
+            <Link
+              to="/partners"
+              className={`transition-colors duration-200 relative py-1.5 font-medium ${
+                location.pathname === '/partners'
+                  ? 'text-brand-red font-semibold'
+                  : 'text-gray-600 hover:text-gray-950'
+              }`}
+            >
+              Партнёрам
+            </Link>
           </nav>
         </div>
 
@@ -127,7 +137,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
           
           {/* Mobile Menu Trigger */}
           <button 
-            className="relative z-[60] text-brand-light p-2 -mr-2 group hover:text-brand-red transition-colors md:hidden cursor-pointer"
+            className="relative z-[60] text-gray-900 p-2 -mr-2 group hover:text-brand-red transition-colors md:hidden cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -142,10 +152,10 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
             initial={{ opacity: 0, y: "-100%" }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 bg-brand-black z-50 flex flex-col pt-24 pb-12 px-6 min-h-screen"
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-[#FAF9F6] z-50 flex flex-col pt-24 pb-12 px-6 min-h-screen border-b border-stone-200"
           >
-            <nav className="flex flex-col items-center justify-center gap-6 font-display text-sm md:text-base uppercase tracking-tighter text-brand-light text-center flex-1">
+            <nav className="flex flex-col items-center justify-center gap-5 font-sans text-sm md:text-base uppercase tracking-wider font-semibold text-gray-800 text-center flex-1">
               <Link 
                 to="/#hero" 
                 onClick={(e) => handleLinkClick(e, '#hero')} 
@@ -167,6 +177,15 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                to="/partners"
+                onClick={() => setIsOpen(false)}
+                className={`transition-colors duration-300 ${
+                  location.pathname === '/partners' ? 'text-brand-red' : 'hover:text-brand-red'
+                }`}
+              >
+                Партнёрам и дизайнерам
+              </Link>
             </nav>
 
             <div className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto shrink-0 mt-8">
@@ -176,7 +195,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
                     setIsOpen(false);
                     onOpenCalculator();
                   }}
-                  className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-xs uppercase tracking-wider py-3.5 rounded-lg font-semibold transition-all cursor-pointer text-center"
+                  className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-xs uppercase tracking-wider py-3.5 rounded-xl font-bold transition-all cursor-pointer text-center shadow-sm"
                 >
                   Рассчитать смету
                 </button>

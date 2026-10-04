@@ -7,38 +7,41 @@ export function PartnersCtaBlock() {
   const { navigateWithTransition } = useTransition();
 
   return (
-    <section className="relative py-16 md:py-20 bg-brand-black border-t border-brand-light/5 overflow-hidden">
-      <div className="absolute inset-0 bg-brand-red/5 mix-blend-color-dodge pointer-events-none" />
-      
-      <div className="max-w-[1440px] mx-auto px-6 relative z-10 flex flex-col items-start text-left">
+    <section className="relative py-16 md:py-24 bg-[#F5F4F0] border-t border-stone-200/80 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl flex flex-col items-start"
+          className="relative bg-white border border-stone-200/90 rounded-3xl p-8 sm:p-12 md:p-16 shadow-xs overflow-hidden"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-card/50 border border-brand-light/10 rounded-full mb-6">
-            <Briefcase className="w-3 h-3 text-brand-red" />
-            <span className="font-mono text-[10px] uppercase tracking-widest text-brand-gray">Для партнёров и дизайнеров</span>
+          {/* Subtle warm decorative glow */}
+          <div className="absolute -right-24 -top-24 w-96 h-96 bg-brand-red/5 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 max-w-3xl flex flex-col items-start">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-orange-50 border border-orange-200/70 rounded-full mb-6">
+              <Briefcase className="w-3.5 h-3.5 text-brand-red" />
+              <span className="font-mono text-xs uppercase tracking-wider font-bold text-brand-red">Для партнёров и дизайнеров</span>
+            </div>
+            
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl md:text-4xl text-gray-950 tracking-tight mb-4">
+              Надёжный партнёр для <span className="text-brand-red">ваших дизайн-проектов</span>
+            </h2>
+            
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-8 max-w-2xl">
+              Предлагаем специальные партнерские условия для дизайнеров интерьера, архитекторов и руководителей строительных проектов. 
+              Берём на себя сложные инженерные узлы, теневые примыкания EuroKraab, трековое освещение и сдаём объекты точно в срок с гарантией 10 лет.
+            </p>
+            
+            <button
+              onClick={() => navigateWithTransition('/partners', 'ПАРТНЕРЫ')}
+              className="inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-hover text-white px-8 py-3.5 rounded-xl font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-sm group cursor-pointer"
+            >
+              <span>Узнать условия для дизайнеров</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
           </div>
-          
-          <h2 className="font-display text-3xl md:text-4xl uppercase tracking-tight text-white mb-4">
-            Надежный партнер для <span className="text-brand-red">ваших проектов</span>
-          </h2>
-          
-          <p className="text-brand-light/80 text-sm md:text-base leading-relaxed mb-8 max-w-xl">
-            Предлагаем специальные условия для дизайнеров интерьера, архитекторов и строительных компаний. 
-            Реализуем проекты любой сложности с гарантией качества и соблюдением сроков.
-          </p>
-          
-          <button
-            onClick={() => navigateWithTransition('/partners', 'ПАРТНЕРЫ')}
-            className="inline-flex items-center justify-center gap-2 border border-brand-light/30 hover:border-brand-light text-brand-light px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 group cursor-pointer"
-          >
-            Узнать условия
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
         </motion.div>
       </div>
     </section>

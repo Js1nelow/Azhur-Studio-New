@@ -27,13 +27,22 @@ export function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <aside className={`fixed inset-x-3 bottom-3 z-[100] mx-auto max-w-5xl border border-white/10 bg-[#111]/95 p-5 shadow-2xl shadow-black/60 backdrop-blur-xl transition-all duration-300 md:bottom-6 md:p-6 ${closing ? 'translate-y-8 opacity-0' : 'translate-y-0 opacity-100'}`} role="dialog" aria-label="Уведомление о cookie">
-      <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
-        <p className="max-w-3xl text-sm leading-relaxed text-brand-gray">
-          Мы используем файлы cookie и сервисы веб-аналитики (Яндекс.Метрика) для корректной работы сайта. Продолжая использовать сайт, вы соглашаетесь с нашей{' '}
-          <Link to="/privacy/" className="text-brand-light underline decoration-brand-red underline-offset-4 hover:text-brand-red">Политикой конфиденциальности</Link>.
+    <aside className={`fixed inset-x-4 bottom-4 z-[100] mx-auto max-w-4xl border border-stone-200/90 bg-white/95 p-5 shadow-2xl shadow-stone-900/10 backdrop-blur-md rounded-2xl transition-all duration-300 md:bottom-6 md:p-6 ${closing ? 'translate-y-8 opacity-0' : 'translate-y-0 opacity-100'}`} role="dialog" aria-label="Уведомление о cookie">
+      <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+        <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-gray-600">
+          Мы используем файлы cookie и сервисы веб-аналитики (Яндекс.Метрика) для корректной работы сайта и улучшения пользовательского опыта. Продолжая использовать сайт, вы соглашаетесь с{' '}
+          <Link to="/privacy" className="text-gray-900 font-semibold underline underline-offset-2 hover:text-brand-red transition-colors">
+            Политикой конфиденциальности
+          </Link>
+          .
         </p>
-        <button type="button" onClick={accept} className="w-full shrink-0 bg-brand-red px-8 py-3 font-mono text-xs uppercase tracking-widest text-white transition-colors hover:bg-brand-red/90 md:w-auto">Принять</button>
+        <button 
+          type="button" 
+          onClick={accept} 
+          className="w-full shrink-0 bg-brand-red hover:bg-brand-red-hover px-7 py-2.5 font-sans text-xs uppercase tracking-wider font-bold text-white rounded-xl shadow-sm transition-all md:w-auto cursor-pointer"
+        >
+          Принять
+        </button>
       </div>
     </aside>
   );

@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Logo } from '../Logo';
 
 export function Footer() {
@@ -15,6 +16,10 @@ export function Footer() {
             <p className="text-xs sm:text-sm text-gray-600 max-w-sm leading-relaxed">
               Монтаж натяжных потолков в Москве и Московской области. Без пыли, с гарантией 10 лет и фиксированной сметой в договоре.
             </p>
+            <div className="pt-2 text-[11px] text-gray-400 space-y-0.5">
+              <p>ИП Мысягин Олег Владимирович</p>
+              <p>ОГРНИП 318502700045544 • ИНН 504015694200</p>
+            </div>
           </div>
 
           {/* Column 2: Navigation Links */}
@@ -38,6 +43,11 @@ export function Footer() {
               </li>
               <li>
                 <a href="#about" className="text-gray-600 hover:text-brand-red transition-colors">О мастере</a>
+              </li>
+              <li>
+                <Link to="/partners" className="text-gray-600 hover:text-brand-red transition-colors font-medium">
+                  Партнёрам и дизайнерам
+                </Link>
               </li>
               <li>
                 <a href="#faq" className="text-gray-600 hover:text-brand-red transition-colors">Вопросы и ответы</a>
@@ -81,10 +91,14 @@ export function Footer() {
           <div>
             © {currentYear} Студия натяжных потолков «Ажур». Все права защищены.
           </div>
-          <div>
-            <a href="/privacy/" className="hover:text-gray-900 transition-colors underline">
+          <div className="flex items-center gap-4">
+            <Link to="/partners" className="hover:text-gray-900 transition-colors">
+              Для дизайнеров
+            </Link>
+            <span>•</span>
+            <Link to="/privacy" className="hover:text-gray-900 transition-colors underline">
               Политика конфиденциальности
-            </a>
+            </Link>
           </div>
         </div>
 

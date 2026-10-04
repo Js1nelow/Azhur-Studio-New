@@ -62,74 +62,78 @@ export function Partners() {
 
   const cards = [
     {
-      icon: <Handshake className="text-brand-red w-8 h-8 stroke-[1.25]" />,
+      icon: <Handshake className="text-brand-red w-6 h-6 stroke-[1.5]" />,
       title: "Вы наш главный заказчик",
-      text: "Не лезем с ненужными советами, но если попросите — дадим рекомендации по улучшению проекта"
+      text: "Не лезем с ненужными советами, но если попросите — дадим инженерные рекомендации по улучшению проекта."
     },
     {
-      icon: <Calculator className="text-brand-red w-8 h-8 stroke-[1.25]" />,
-      title: "Проведём расчёты перед стартом",
-      text: "Поможем решить технические и инженерные вопросы до начала монтажа"
+      icon: <Calculator className="text-brand-red w-6 h-6 stroke-[1.5]" />,
+      title: "Проведём расчёты до старта",
+      text: "Поможем решить сложные технические узлы, ниши и примыкания до начала монтажных работ."
     },
     {
-      icon: <MessageSquare className="text-brand-red w-8 h-8 stroke-[1.25]" />,
-      title: "Умеем общаться с вашими клиентами",
-      text: "Ответим на их вопросы доступным языком, поможем объяснить решение"
+      icon: <MessageSquare className="text-brand-red w-6 h-6 stroke-[1.5]" />,
+      title: "Грамотный диалог с клиентом",
+      text: "Ответим на вопросы доступным языком, обоснуем технологические решения и сохраним ваш авторитет."
     },
     {
-      icon: <MapPin className="text-brand-red w-8 h-8 stroke-[1.25]" />,
+      icon: <MapPin className="text-brand-red w-6 h-6 stroke-[1.5]" />,
       title: "Точный расчёт сразу на объекте",
-      text: "Делаем смету и эскиз на месте, фиксируем цену сразу"
+      text: "Делаем смету и лазерный замер на месте, фиксируем окончательную стоимость в официальном договоре."
     }
   ];
 
   return (
-    <div className="pt-32 md:pt-40 pb-24 min-h-screen bg-brand-black text-brand-light">
+    <div className="pt-28 sm:pt-36 pb-24 min-h-screen bg-[#FAF9F6] text-gray-900">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16">
         <Link 
           to="/" 
-          className="inline-flex items-center gap-2 text-brand-gray hover:text-brand-light font-mono text-xs uppercase tracking-wider transition-colors mb-12 md:mb-16"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-brand-red text-xs font-semibold tracking-wide transition-colors mb-10"
         >
           <ArrowLeft size={16} />
           Назад на главную
         </Link>
         
-        <div className="max-w-3xl mb-16 md:mb-24 space-y-6">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-brand-red uppercase tracking-widest">[ Сотрудничество ]</span>
-            <div className="h-[1px] w-8 bg-brand-red/50" />
+        <div className="max-w-3xl mb-14 md:mb-18 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-orange-50 border border-orange-200/70 rounded-full font-mono text-xs uppercase tracking-wider font-bold text-brand-red">
+            [ Сотрудничество с дизайнерами и архитекторами ]
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight text-brand-light">
-            Партнёрам
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-gray-950">
+            Партнёрам и дизайнерам
           </h1>
-          <p className="text-brand-gray text-lg md:text-xl font-sans max-w-2xl leading-relaxed">
-            Реализуем ваш проект точно и без компромиссов, какой бы сложный он ни был
+          <p className="text-gray-600 text-base sm:text-lg font-sans max-w-2xl leading-relaxed">
+            Реализуем натяжные потолочные системы любой сложности точно по дизайн-проекту, без компромиссов в качестве и с соблюдением оговоренных сроков.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+        {/* Benefits Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {cards.map((card, idx) => (
-            <div key={idx} className="bg-brand-card/30 border border-brand-light/5 p-8 flex flex-col items-start transition-all hover:border-brand-red/30 group">
-              <div className="mb-6 bg-brand-black p-4 border border-brand-light/5 group-hover:border-brand-red/20 transition-colors">
+            <div 
+              key={idx} 
+              className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 flex flex-col items-start shadow-xs hover:border-brand-red/30 hover:shadow-md transition-all group"
+            >
+              <div className="mb-5 w-12 h-12 rounded-xl bg-orange-50 border border-orange-200/60 flex items-center justify-center group-hover:scale-105 transition-transform">
                 {card.icon}
               </div>
-              <h3 className="text-brand-light text-lg font-display uppercase tracking-wide mb-4 line-clamp-2">
+              <h3 className="text-gray-950 text-base font-bold tracking-tight mb-2.5">
                 {card.title}
               </h3>
-              <p className="text-brand-gray text-sm leading-relaxed font-sans">
+              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-sans">
                 {card.text}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="max-w-2xl mx-auto bg-brand-card/30 border border-brand-light/5 p-8 md:p-12">
+        {/* Form Container */}
+        <div className="max-w-xl mx-auto bg-white border border-stone-200/90 rounded-3xl p-8 sm:p-10 shadow-xs">
           <div className="mb-8 text-center">
-            <h3 className="text-2xl md:text-3xl font-display uppercase tracking-tight text-brand-light mb-2">
-              Оставьте заявку
-            </h3>
-            <p className="text-brand-gray text-sm font-sans">
-              Обсудим условия сотрудничества
+            <h2 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-gray-950 mb-2">
+              Оставить заявку
+            </h2>
+            <p className="text-gray-600 text-sm font-sans">
+              Обсудим индивидуальные условия сотрудничества и партнерские бонусы
             </p>
           </div>
 
@@ -141,7 +145,7 @@ export function Partners() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onSubmit={handleSubmit}
-                className="space-y-6"
+                className="space-y-5"
               >
                 {/* Honeypot anti-spam field */}
                 <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
@@ -156,54 +160,57 @@ export function Partners() {
                 </div>
 
                 {error && (
-                  <div className="p-3 bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm mb-4">
+                  <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-600 text-xs sm:text-sm">
                     {error}
                   </div>
                 )}
-                <div className="space-y-2">
-                  <label className="block font-mono text-[10px] uppercase text-brand-gray tracking-wider">Имя</label>
+                
+                <div className="space-y-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">Ваше имя</label>
                   <input
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Ваше имя"
-                    className="w-full bg-brand-black border border-brand-light/10 focus:border-brand-red/50 px-4 py-4 text-sm text-brand-light rounded-none outline-none transition-colors font-sans placeholder:text-brand-gray/50"
+                    placeholder="Иван Иванов"
+                    className="w-full bg-[#FAF9F6] border border-stone-200 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 px-4 py-3.5 text-sm text-gray-950 rounded-xl outline-none transition-all placeholder:text-gray-400 font-sans"
                   />
                 </div>
                 
-                <div className="space-y-2">
-                  <label className="block font-mono text-[10px] uppercase text-brand-gray tracking-wider">Телефон <span className="text-brand-red">*</span></label>
+                <div className="space-y-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">Телефон <span className="text-brand-red">*</span></label>
                   <input
                     type="tel"
                     required
                     value={phone}
                     onChange={handlePhoneChange}
                     placeholder="+7 (999) 000-00-00"
-                    className="w-full bg-brand-black border border-brand-light/10 focus:border-brand-red/50 px-4 py-4 text-sm text-brand-light rounded-none outline-none transition-colors font-sans placeholder:text-brand-gray/50"
+                    className="w-full bg-[#FAF9F6] border border-stone-200 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 px-4 py-3.5 text-sm text-gray-950 rounded-xl outline-none transition-all placeholder:text-gray-400 font-sans"
                   />
                 </div>
 
-                <PrivacyConsent />
+                <div className="pt-2">
+                  <PrivacyConsent />
+                </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting || !isPhoneValid}
-                  className={`w-full font-mono text-xs uppercase tracking-widest py-5 transition-all font-medium flex items-center justify-center gap-2 mt-8 cursor-pointer ${
+                  className={`w-full py-4 rounded-xl text-xs uppercase tracking-wider font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
                     isPhoneValid
-                      ? 'bg-brand-red hover:bg-brand-red/90 text-white shadow-[0_0_20px_rgba(255,51,51,0.3)]'
-                      : 'bg-brand-black border border-brand-light/10 text-brand-gray cursor-not-allowed'
+                      ? 'bg-brand-red hover:bg-brand-red-hover text-white shadow-brand-red/20 hover:shadow-md'
+                      : 'bg-stone-200 text-stone-400 cursor-not-allowed'
                   }`}
                 >
                   {isSubmitting ? (
                     <>
                       <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Отправка...</span>
+                      <span>Отправка заявки...</span>
                     </>
                   ) : (
                     <>
-                      <span>Оставить заявку</span>
-                      <ArrowRight size={14} />
+                      <span>Получить условия сотрудничества</span>
+                      <ArrowRight size={15} />
                     </>
                   )}
                 </button>
@@ -215,20 +222,20 @@ export function Partners() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="py-8 text-center space-y-6"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-none bg-brand-red/10 border border-brand-red/30 text-brand-red mb-2">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 border border-orange-200/70 text-brand-red mb-2">
                   <CheckCircle size={32} />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl md:text-2xl font-display uppercase tracking-tight text-brand-light">
+                  <h3 className="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-gray-950">
                     Заявка принята
                   </h3>
-                  <p className="text-brand-gray font-sans text-sm max-w-sm mx-auto leading-relaxed">
-                    Мы свяжемся с вами в ближайшее время для обсуждения деталей.
+                  <p className="text-gray-600 font-sans text-sm max-w-sm mx-auto leading-relaxed">
+                    Мы свяжемся с вами в течение 15 минут для обсуждения условий сотрудничества.
                   </p>
                 </div>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="bg-transparent border border-brand-light/20 hover:border-brand-light text-brand-light font-mono text-xs uppercase tracking-wider px-8 py-3 transition-colors cursor-pointer"
+                  className="bg-stone-100 hover:bg-stone-200 text-gray-800 text-xs uppercase tracking-wider font-bold px-8 py-3 rounded-xl transition-colors cursor-pointer"
                 >
                   Отправить ещё раз
                 </button>
