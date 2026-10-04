@@ -64,7 +64,7 @@ export function ContactFormBlock() {
     },
     {
       icon: <Calculator size={20} className="text-brand-red shrink-0" />,
-      text: "Бесплатный расчет сметы до копейки"
+      text: "Точный расчет сметы без скрытых доплат"
     },
     {
       icon: <Ruler size={20} className="text-brand-red shrink-0" />,
