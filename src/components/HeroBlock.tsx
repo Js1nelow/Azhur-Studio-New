@@ -54,7 +54,7 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               transition={{ duration: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[54px] font-extrabold leading-[1.14] tracking-tight text-gray-950 mb-5 max-w-2xl"
             >
-              Натяжные потолки <span className="text-brand-red whitespace-nowrap">от 790 ₽/м²</span> с чистым монтажом <span className="whitespace-nowrap">за 1 день</span>
+              Натяжные потолки <span className="text-brand-red whitespace-nowrap">от 990 ₽/м²</span> с чистым монтажом <span className="whitespace-nowrap">за 1 день</span>
             </motion.h1>
 
             {/* Subhead / Guarantee */}
