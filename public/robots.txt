@@ -1,4 +1,24 @@
 User-agent: *
 Allow: /
 
+# Search Engines
+User-agent: Yandex
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# AI Crawlers (Яндекс Нейро, Gemini, ChatGPT, Perplexity)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 Sitemap: https://azhur-studio.ru/sitemap.xml
