@@ -124,7 +124,7 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
               <div className="relative rounded-2xl overflow-hidden border border-stone-200/90 bg-white/95 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.08),0_10px_25px_rgba(224,90,43,0.05)]">
                 <img
                   src="/azhur/photo/hero.webp"
-                  alt="Олег Мисягин — ведущий специалист"
+                  alt="Олег Мысягин — ведущий специалист"
                   className="w-full aspect-[4/5] object-cover object-top"
                   loading="eager"
                 />
@@ -132,7 +132,7 @@ export function HeroBlock({ onOpenCalculator }: HeroBlockProps) {
                 {/* Master info badge */}
                 <div className="p-4 bg-white/95 backdrop-blur-md border-t border-stone-200">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-extrabold text-gray-950 text-base">Олег Мисягин</span>
+                    <span className="font-extrabold text-gray-950 text-base">Олег Мысягин</span>
                     <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-orange-50 text-brand-red border border-orange-200 uppercase tracking-wider">
                       Опыт 17 лет
                     </span>

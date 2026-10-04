@@ -27,12 +27,12 @@ export function AboutBlock() {
             >
               <img
                 src="/azhur/photo/o_nas.webp"
-                alt="Олег Мисягин — основатель студии Ажур"
+                alt="Олег Мысягин — основатель студии Ажур"
                 className="w-full aspect-[3/4] object-cover"
               />
               
               <div className="p-4 bg-white/95 backdrop-blur-xs border-t border-stone-200">
-                <div className="text-base font-bold text-gray-950">Олег Мисягин</div>
+                <div className="text-base font-bold text-gray-950">Олег Мысягин</div>
                 <div className="text-xs text-gray-600 mt-0.5">Основатель и ведущий мастер «Ажур Студии»</div>
               </div>
             </motion.div>
@@ -45,7 +45,7 @@ export function AboutBlock() {
                 Лично отвечаю за каждый замер и монтаж
               </h2>
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                Меня зовут Олег Мисягин, я занимаюсь натяжными потолками с 2007 года. На замеры приезжаю сам с образцами полотен и профилей. Смету считаю на месте до рубля — сумма в договоре окончательная и не вырастет в ходе работ.
+                Меня зовут Олег Мысягин, я занимаюсь натяжными потолками с 2007 года. На замеры приезжаю сам с образцами полотен и профилей. Смету считаю на месте до рубля — сумма в договоре окончательная и не вырастет в ходе работ.
               </p>
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 Бригады у нас постоянные, стаж мастеров — от 7 лет. Работаем перфораторами с пылесосом и безопасными полимерными баллонами. Укрываем стены, бережём чистовую отделку и убираем весь мусор после сдачи.

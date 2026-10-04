@@ -44,8 +44,8 @@ export function FloatingContactWidget({ onOpenCalculator: _ }: FloatingContactWi
     const vcard = [
       'BEGIN:VCARD',
       'VERSION:3.0',
-      'N:Мисягин;Олег;;;',
-      'FN:Олег Мисягин',
+      'N:Мысягин;Олег;;;',
+      'FN:Олег Мысягин',
       'ORG:Azhur Studio',
       'TEL;TYPE=CELL,VOICE:+79253131799',
       'URL:https://azhur-studio.ru',
@@ -56,7 +56,7 @@ export function FloatingContactWidget({ onOpenCalculator: _ }: FloatingContactWi
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'Олег_Мисягин.vcf');
+    link.setAttribute('download', 'Олег_Мысягин.vcf');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -71,7 +71,7 @@ export function FloatingContactWidget({ onOpenCalculator: _ }: FloatingContactWi
           type="button"
           onClick={handleOpen}
           aria-expanded={isOpen}
-          aria-label="Связаться с Олегом Мисягиным"
+          aria-label="Связаться с Олегом Мысягиным"
           className="relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-brand-red hover:bg-brand-red-hover text-white shadow-[0_8px_25px_rgba(224,90,43,0.35)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer focus:outline-none"
         >
           <MessageSquare size={22} strokeWidth={1.8} />
@@ -102,7 +102,7 @@ export function FloatingContactWidget({ onOpenCalculator: _ }: FloatingContactWi
               className="relative z-10 w-full max-w-[340px] bg-[#FAF9F6] border border-stone-200/90 rounded-2xl px-6 pt-6 pb-8 shadow-[0_25px_60px_rgba(0,0,0,0.15),0_10px_25px_rgba(224,90,43,0.06)] text-gray-900 font-sans text-center"
               role="dialog"
               aria-modal="true"
-              aria-label="Контакты Олега Мисягина"
+              aria-label="Контакты Олега Мысягина"
             >
               {/* Close Button Top-Right */}
               <button
@@ -119,7 +119,7 @@ export function FloatingContactWidget({ onOpenCalculator: _ }: FloatingContactWi
                 {!imgError ? (
                   <img
                     src="/azhur/photo/hero.webp"
-                    alt="Олег Мисягин"
+                    alt="Олег Мысягин"
                     onError={() => setImgError(true)}
                     className="w-full h-full object-cover object-top"
                   />
@@ -132,7 +132,7 @@ export function FloatingContactWidget({ onOpenCalculator: _ }: FloatingContactWi
 
               {/* Name in Cormorant Garamond Serif */}
               <h3 className="font-serif text-2xl sm:text-[26px] text-gray-950 font-normal tracking-wide leading-tight mb-1.5">
-                Олег Мисягин
+                Олег Мысягин
               </h3>
 
               {/* Phone Link */}
