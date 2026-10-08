@@ -17,7 +17,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
 
   useEffect(() => {
     if (location.pathname !== '/') return;
-    const sections = ['hero', 'works', 'services', 'process', 'reviews', 'about', 'faq', 'contact'];
+    const sections = ['hero', 'works', 'services', 'process', 'reviews', 'about', 'partners', 'faq', 'contact'];
     
     const observerOptions = {
       root: null,
@@ -67,6 +67,7 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
     { href: '#process', id: 'process', label: 'Этапы работы' },
     { href: '#reviews', id: 'reviews', label: 'Отзывы' },
     { href: '#about', id: 'about', label: 'О нас' },
+    { href: '/partners', id: 'partners', label: 'Партнёрам' },
     { href: '#faq', id: 'faq', label: 'FAQ' },
     { href: '#contact', id: 'contact', label: 'Контакты' },
   ];
@@ -91,37 +92,38 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
         {/* Right Side: Desktop Nav links & Estimate CTAs */}
         <div className="hidden md:flex items-center justify-center">
           <nav className="flex items-center gap-5 lg:gap-7 text-xs uppercase tracking-wider">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={`/${link.href}`}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className={`transition-colors duration-200 relative py-1.5 font-medium ${
-                  activeSection === link.id
-                    ? 'text-brand-red font-semibold'
-                    : 'text-gray-600 hover:text-gray-950'
-                }`}
-              >
-                {link.label}
-                {activeSection === link.id && (
-                  <motion.span
-                    layoutId="activeIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-red rounded-full"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
-            <Link
-              to="/partners"
-              className={`transition-colors duration-200 relative py-1.5 font-medium ${
-                location.pathname === '/partners'
-                  ? 'text-brand-red font-semibold'
-                  : 'text-gray-600 hover:text-gray-950'
-              }`}
-            >
-              Партнёрам
-            </Link>
+            {navLinks.map((link) => {
+              const isRoute = link.href.startsWith('/');
+              const isActive = isRoute
+                ? location.pathname === link.href
+                : activeSection === link.id && location.pathname === '/';
+
+              return (
+                <Link
+                  key={link.href}
+                  to={isRoute ? link.href : `/${link.href}`}
+                  onClick={(e) => {
+                    if (!isRoute) {
+                      handleLinkClick(e, link.href);
+                    }
+                  }}
+                  className={`transition-colors duration-200 relative py-1.5 font-medium ${
+                    isActive
+                      ? 'text-brand-red font-semibold'
+                      : 'text-gray-600 hover:text-gray-950'
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-red rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
@@ -165,27 +167,30 @@ export function Navbar({ onOpenCalculator }: NavbarProps) {
               >
                 Главная
               </Link>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={`/${link.href}`}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`transition-colors duration-300 ${
-                    activeSection === link.id ? 'text-brand-red' : 'hover:text-brand-red'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link
-                to="/partners"
-                onClick={() => setIsOpen(false)}
-                className={`transition-colors duration-300 ${
-                  location.pathname === '/partners' ? 'text-brand-red' : 'hover:text-brand-red'
-                }`}
-              >
-                Партнёрам и дизайнерам
-              </Link>
+              {navLinks.map((link) => {
+                const isRoute = link.href.startsWith('/');
+                const isActive = isRoute
+                  ? location.pathname === link.href
+                  : activeSection === link.id && location.pathname === '/';
+
+                return (
+                  <Link
+                    key={link.href}
+                    to={isRoute ? link.href : `/${link.href}`}
+                    onClick={(e) => {
+                      setIsOpen(false);
+                      if (!isRoute) {
+                        handleLinkClick(e, link.href);
+                      }
+                    }}
+                    className={`transition-colors duration-300 ${
+                      isActive ? 'text-brand-red' : 'hover:text-brand-red'
+                    }`}
+                  >
+                    {link.id === 'partners' ? 'Партнёрам и дизайнерам' : link.label}
+                  </Link>
+                );
+              })}
             </nav>
 
             <div className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto shrink-0 mt-8">

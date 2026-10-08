@@ -5,7 +5,7 @@ export function PartnersCtaBlock() {
   const { navigateWithTransition } = useTransition();
 
   return (
-    <section className="relative py-16 md:py-24 bg-[#F5F4F0] border-t border-stone-200/80 overflow-hidden">
+    <section id="partners" className="relative py-16 md:py-24 bg-[#F5F4F0] border-t border-stone-200/80 overflow-hidden">
       {/* Subtle warm ambient backdrop */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-orange-200/20 via-amber-100/10 to-transparent blur-[120px] rounded-full pointer-events-none" />
 
