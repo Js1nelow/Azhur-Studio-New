@@ -68,7 +68,7 @@ export function ContactFormBlock() {
     },
     {
       icon: <Ruler size={20} className="text-brand-red shrink-0" />,
-      text: "Выезд на замер с каталогом полотен"
+      text: "Выезд технолога с каталогом полотен"
     }
   ];
 
